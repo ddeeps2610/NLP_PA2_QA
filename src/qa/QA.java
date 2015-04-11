@@ -7,6 +7,6 @@ package qa;
  * @author Deepak
  *
  */
-public class PassageRetrieval {
+public class QA implements IQA {
 
 }

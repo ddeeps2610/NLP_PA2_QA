@@ -7,6 +7,6 @@ package qa;
  * @author Deepak
  *
  */
-public class AnswerFormation {
+public class Question implements IQuestion{
 
 }

@@ -1,12 +1,12 @@
-package qa;
 /**
  * 
  */
+package qa;
 
 /**
  * @author Deepak
  *
  */
-public class QuestionProcessing {
+public interface IQA {
 
 }
