@@ -9,4 +9,6 @@ package qa.QuestionProcessing;
  */
 public interface IQuestionReader {
 
+	void readQuestions();
+
 }
