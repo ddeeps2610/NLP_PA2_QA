@@ -22,7 +22,7 @@ public class QuestionProcessor implements IQuestionProcessor {
 		this.questionsQueue = questionsQueue;
 		this.questionsFileName = questionsFileName;
 		this.questionReader = new QuestionReader(questionsFileName);
-		this.questionReader.readQuestions();
+		this.questionsQueue = this.questionReader.readQuestions();
 	}
 
 	@Override

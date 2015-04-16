@@ -13,16 +13,26 @@ import java.util.LinkedList;
 public class Question implements IQuestion
 {
 	/*********************** State ************************/
+	private Integer qID;
 	private String question;
 	private LinkedList<String> answerPatterns;
 	private LinkedList<String> relevantPassages;
 	private LinkedList<String> answers;
 	
 	/*********************** Getters and Setters ************************/
+	
 	public String getQuestion() {
 		return question;
 	}
 	
+	public Integer getqID() {
+		return qID;
+	}
+
+	public void setqID(Integer qID) {
+		this.qID = qID;
+	}
+
 	public LinkedList<String> getAnswerPatterns() {
 		return answerPatterns;
 	}

@@ -24,7 +24,7 @@ public class QA implements IQA
 	private IQuestionProcessor questionProccessor;
 	private IPassageRetriever passageRetriever;
 	private IAnswerGenerator answerGenerator;
-	private static String QUESTIONFILENAME= "\\qadata\\test\\questions.txt";
+	private static String QUESTIONFILENAME= "qadata/test/questions.txt";
 	
 
 	/*********************** Getters and Setters ************************/

@@ -15,10 +15,12 @@ public interface IQuestion
 	public LinkedList<String> getAnswerPatterns();
 	public LinkedList<String> getRelevantPassages();
 	public LinkedList<String> getAnswers();
+	public Integer getqID();
 	
 	public void setQuestion(String question);
 	public void addAnswerPattern(String answerPattern);
 	public void addAnswer(String answer);
 	public void addrelevantPassage(String relevantPassage);
-
+	public void setqID(Integer qID);
+	
 }

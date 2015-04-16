@@ -3,12 +3,16 @@
  */
 package qa.QuestionProcessing;
 
+import java.util.LinkedList;
+
+import qa.IQuestion;
+
 /**
  * @author Deepak
  *
  */
 public interface IQuestionReader {
 
-	void readQuestions();
+	public LinkedList<IQuestion> readQuestions();
 
 }
