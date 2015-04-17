@@ -18,6 +18,8 @@ public class Question implements IQuestion
 	private LinkedList<String> answerPatterns;
 	private LinkedList<String> relevantPassages;
 	private LinkedList<String> answers;
+	private QuestionType questionType;
+	private AnswerType answerType;
 	
 	/*********************** Getters and Setters ************************/
 	
@@ -25,6 +27,22 @@ public class Question implements IQuestion
 		return question;
 	}
 	
+	public QuestionType getQuestionType() {
+		return questionType;
+	}
+
+	public void setQuestionType(QuestionType questionType) {
+		this.questionType = questionType;
+	}
+
+	public AnswerType getAnswerType() {
+		return answerType;
+	}
+
+	public void setAnswerType(AnswerType answerType) {
+		this.answerType = answerType;
+	}
+
 	public Integer getqID() {
 		return qID;
 	}

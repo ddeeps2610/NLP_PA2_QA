@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * @author Deepak Awari
  *
  */
-public interface IQA 
+public interface IQASystem 
 {
 	public void execute();
 	

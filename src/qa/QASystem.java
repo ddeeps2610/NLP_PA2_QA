@@ -16,7 +16,7 @@ import qa.QuestionProcessing.QuestionProcessor;
 /**
  * @author Deepak Awari
  */
-public class QA implements IQA 
+public class QASystem implements IQASystem 
 {
 	/*********************** State ************************/
 	private Queue<IQuestion> questionsQueue;
@@ -28,7 +28,7 @@ public class QA implements IQA
 	
 
 	/*********************** Getters and Setters ************************/
-	public QA() {
+	public QASystem() {
 		this.questionsQueue = new LinkedList<IQuestion>();
 		this.processedQuestionsQueue = new LinkedList<IQuestion>();
 		this.questionProccessor = new QuestionProcessor(this.questionsQueue,this.QUESTIONFILENAME);
