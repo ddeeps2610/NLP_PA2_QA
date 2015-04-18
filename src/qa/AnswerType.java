@@ -8,10 +8,28 @@ package qa;
  *
  */
 public enum AnswerType {
+	// Stanford NER 7 class model
 	TIME,
-	PLACE,
+	LOCATION,
+	ORGANIZATION,
+	PERSON,
+	MONEY,
+	PERCENT,
+	DATE,
+	
+	// Other Answer Types
 	REASON,
 	DESCRIPTION,
-	DEFINITION
+	DEFINITION,
+	
+	// GENERICS - Hypernyms
+	NUMBER,
+	
+	// POS Tags
+	NOUN,
+	VERB,
+	
+	// NONE
+	NONE,
 
 }

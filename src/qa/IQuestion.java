@@ -17,7 +17,8 @@ public interface IQuestion
 	public LinkedList<String> getAnswers();
 	public Integer getqID();
 	public QuestionType getQuestionType();
-	public AnswerType getAnswerType();
+	public LinkedList<AnswerType> getAnswerTypes();
+	public LinkedList<String> getKeywords();
 	
 	public void setQuestion(String question);
 	public void addAnswerPattern(String answerPattern);
@@ -25,6 +26,8 @@ public interface IQuestion
 	public void addrelevantPassage(String relevantPassage);
 	public void setqID(Integer qID);
 	public void setQuestionType(QuestionType questionType);
-	public void setAnswerType(AnswerType answerType);
+	public void addAnswerType(AnswerType answerType);
+	public void addKeywords(String keyword);
+	public void setKeywords(LinkedList<String> keywords);
 	
 }

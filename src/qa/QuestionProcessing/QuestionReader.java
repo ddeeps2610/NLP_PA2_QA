@@ -8,13 +8,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import qa.IQuestion;
 import qa.Question;
+import qa.QuestionType;
 
 /**
- * @author Deepak
+ * @author Deepak Awari
+ * Reads the file that contains questions and creates the question object 
+ * with QID and Question stored in the object.
  *
  */
 public class QuestionReader implements IQuestionReader{
@@ -49,10 +53,9 @@ public class QuestionReader implements IQuestionReader{
 			// Read each line from the file and process the same.
 			String line;
 			try {
+				IQuestion newQuestion = null;
 				while((line = questionFileReader.readLine())!= null)
 				{
-					IQuestion newQuestion = new Question();
-					
 					// Skip the line if there is nothing in the line
 					if(line.isEmpty())
 						continue;
@@ -60,12 +63,14 @@ public class QuestionReader implements IQuestionReader{
 					// If the line contains the QID, search the qid and store the same.
 					else if(line.contains("Number:"))
 					{
+						newQuestion = new Question();
 						newQuestion.setqID(Integer.parseInt(line.split(" ")[1]));
-						System.out.print("QID:" +newQuestion.getqID());
+						//System.out.print("QID:" +newQuestion.getqID());
 					}
 					else if(!line.isEmpty() && !line.contains("Number"))
 					{
 						newQuestion.setQuestion(line);
+						System.out.print("QID:" +newQuestion.getqID());
 						System.out.println(" :: "+newQuestion.getQuestion());
 						this.questions.add(newQuestion);
 						newQuestion = null;
@@ -85,6 +90,27 @@ public class QuestionReader implements IQuestionReader{
 		}
 		return this.questions;
 		
+	}
+	
+	public void classifyQuestions()
+	{
+		QuestionType[] qTypes = {	QuestionType.WHAT,
+									QuestionType.WHICH,
+									QuestionType.NAME,
+									QuestionType.HOW 	};
+		//String[] qTypes = {"WHAT", "WHERE", "NAME", "HOW"};
+		//for(String qType : qTypes)
+		for(QuestionType qType : qTypes)
+		{
+			System.out.println(qType.toString());
+			String[] questions;
+			for(IQuestion question : this.questions)
+			{
+				if(question.getQuestion().toUpperCase().contains(qType.toString()))
+					System.out.println(question.getqID() + ":" +question.getQuestion());
+			}
+			System.out.println("\n\n");
+		}
 	}
 
 }

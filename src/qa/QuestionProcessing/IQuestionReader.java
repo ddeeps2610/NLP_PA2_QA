@@ -14,5 +14,6 @@ import qa.IQuestion;
 public interface IQuestionReader {
 
 	public LinkedList<IQuestion> readQuestions();
+	public void classifyQuestions();
 
 }

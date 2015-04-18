@@ -19,12 +19,17 @@ public class Question implements IQuestion
 	private LinkedList<String> relevantPassages;
 	private LinkedList<String> answers;
 	private QuestionType questionType;
-	private AnswerType answerType;
+	private LinkedList<AnswerType> answerTypes;
+	private LinkedList<String> keywords;
 	
 	/*********************** Getters and Setters ************************/
 	
 	public String getQuestion() {
 		return question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
 	}
 	
 	public QuestionType getQuestionType() {
@@ -35,12 +40,14 @@ public class Question implements IQuestion
 		this.questionType = questionType;
 	}
 
-	public AnswerType getAnswerType() {
-		return answerType;
+	public LinkedList<AnswerType> getAnswerTypes() {
+		return this.answerTypes;
 	}
 
-	public void setAnswerType(AnswerType answerType) {
-		this.answerType = answerType;
+	public void addAnswerType(AnswerType answerType) {
+		if(this.answerTypes == null)
+			this.answerTypes = new LinkedList<AnswerType>();
+		this.answerTypes.add(answerType);
 	}
 
 	public Integer getqID() {
@@ -54,24 +61,27 @@ public class Question implements IQuestion
 	public LinkedList<String> getAnswerPatterns() {
 		return answerPatterns;
 	}
-
-	public LinkedList<String> getRelevantPassages() {
-		return relevantPassages;
-	}
-
-	public LinkedList<String> getAnswers() {
-		return answers;
-	}
-
-	public void setQuestion(String question) {
-		this.question = question;
-	}
 	
 	public void addAnswerPattern(String answerPattern)
 	{
 		if(this.answerPatterns == null)
 			this.answerPatterns = new LinkedList<String>();
 		this.answerPatterns.add(answerPattern);
+	}
+
+	public LinkedList<String> getRelevantPassages() {
+		return relevantPassages;
+	}
+	
+	public void addrelevantPassage(String relevantPassage)
+	{
+		if(this.relevantPassages == null)
+			this.relevantPassages = new LinkedList<String>();
+		this.relevantPassages.add(relevantPassage);
+	}
+
+	public LinkedList<String> getAnswers() {
+		return answers;
 	}
 	
 	public void addAnswer(String answer)
@@ -81,11 +91,19 @@ public class Question implements IQuestion
 		this.answers.add(answer);
 	}
 	
-	public void addrelevantPassage(String relevantPassage)
+	public LinkedList<String> getKeywords() {
+		return keywords;
+	}
+	
+	public void setKeywords(LinkedList<String> keywords) {
+		this.keywords = keywords;
+	}
+
+	public void addKeywords(String keyword)
 	{
-		if(this.relevantPassages == null)
-			this.relevantPassages = new LinkedList<String>();
-		this.relevantPassages.add(relevantPassage);
+		if(this.keywords == null)
+			this.keywords = new LinkedList<String>();
+		this.keywords.add(keyword);
 	}
   
 }
