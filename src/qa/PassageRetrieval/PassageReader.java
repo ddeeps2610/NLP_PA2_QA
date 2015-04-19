@@ -5,27 +5,13 @@ package qa.PassageRetrieval;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 
 public class PassageReader implements IPassageReader {
@@ -64,16 +50,6 @@ static List<String> splitDocuments(String filename) {
 					br.close();
 				System.out.println("Number of documents fed : "+TopDocs.size());
 				
-				//Write into a file
-				File file = new File("C:/Users/Arpitha/Documents/NLP/Lucene/SplitDocuments.txt");
-				if(!file.exists())
-					file.createNewFile();
-				BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
-				for (int i = 0; i < TopDocs.size(); i++) {
-					//	System.out.println(TopDocs.get(i));
-					bw.write("\nRANK: "+i+"\n"+TopDocs.get(i));
-				}
-				bw.close();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}

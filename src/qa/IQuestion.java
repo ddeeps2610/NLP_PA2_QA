@@ -4,6 +4,7 @@
 package qa;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Deepak
@@ -25,6 +26,7 @@ public interface IQuestion
 	public void addAnswerPattern(String answerPattern);
 	public void addAnswer(String answer);
 	public void addrelevantPassage(String relevantPassage);
+	public void addAllRelevantPassages(List<String> relevantPassages);
 	public void setqID(Integer qID);
 	public void setQuestionType(QuestionType questionType);
 	//public void addAnswerType(AnswerType answerType);

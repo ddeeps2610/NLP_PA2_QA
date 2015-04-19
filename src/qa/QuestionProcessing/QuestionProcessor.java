@@ -30,7 +30,7 @@ public class QuestionProcessor implements IQuestionProcessor {
 		this.questionsFileName = questionsFileName;
 		this.questionReader = new QuestionReader(questionsFileName);
 		this.inputQuestions = this.questionReader.readQuestions();
-		this.questionReader.classifyQuestions();
+		//this.questionReader.classifyQuestions();
 		this.qaTypesMap = new HashMap<QuestionType, String>();
 		this.updateQATypes();
 	}
@@ -65,6 +65,7 @@ public class QuestionProcessor implements IQuestionProcessor {
 	public void run() {
 		for(IQuestion question : this.inputQuestions)
 		{
+			this.questionsQueue.add(question);
 			for(Entry<QuestionType, String> entry:this.qaTypesMap.entrySet())
 			{
 				// Identify the question and answer types

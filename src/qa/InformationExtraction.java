@@ -33,8 +33,8 @@ public class InformationExtraction {
 		
 		String start = "\"";
 		int startIndex = question.indexOf(start);
-		int lastIndex = question.indexOf(start);		
-			
+		int lastIndex = question.lastIndexOf(start);		
+		
 		for (int i = 1; i < quesTags.length; i++) {
 			if(posHashMap.containsKey(quesTags[i])) {
 				keywordsString = keywordsString + quesTags[i-1] + " ";
@@ -42,7 +42,7 @@ public class InformationExtraction {
 		}
 	
 		if(startIndex != -1) {
-			keywordsString += question.substring(startIndex, lastIndex);
+			keywordsString += question.substring(startIndex, lastIndex + 1);
 		}
 		
 		return keywordsString;

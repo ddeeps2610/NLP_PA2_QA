@@ -45,8 +45,9 @@ public class AnswerGenerator implements IAnswerGenerator {
 	 * 
 	 * @param processedQuestionsQueue
 	 */
-	public AnswerGenerator(Queue<IQuestion> processedQuestionsQueue) {
+	public AnswerGenerator(Queue<IQuestion> processedQuestionsQueue, List<IQuestion> processedQuestions) {
 		this.processedQuestionsQueue = processedQuestionsQueue;
+		this.processedQuestions = processedQuestions;
 	}
 
 	/**
@@ -54,6 +55,9 @@ public class AnswerGenerator implements IAnswerGenerator {
 	 */
 	@Override
 	public void run() {
+		for(int i = 0; i < 10; i++)
+			System.out.println();
+		
 		while(!processedQuestionsQueue.isEmpty()) {
 			IQuestion question = processedQuestionsQueue.poll();
 			for(String passage : question.getRelevantPassages()) {
@@ -65,7 +69,10 @@ public class AnswerGenerator implements IAnswerGenerator {
 					// do something
 				}
 			}
+			this.processedQuestions.add(question);
 		}
+		AnswerWriter writer = new AnswerWriter("answer.txt");
+		writer.writeAnswers(processedQuestions);
 	}
 
 	/**
@@ -113,4 +120,5 @@ public class AnswerGenerator implements IAnswerGenerator {
 	 * 
 	 */
 	private Queue<IQuestion> processedQuestionsQueue;
+	private List<IQuestion> processedQuestions;
 }
