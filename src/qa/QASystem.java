@@ -25,6 +25,7 @@ public class QASystem implements IQASystem
 	private IPassageRetriever passageRetriever;
 	private IAnswerGenerator answerGenerator;
 	private static String QUESTIONFILENAME= "qadata/test/questions.txt";
+	private static String RELEVANTDOCSPATH= "topdocs/test/";
 	
 
 	/*********************** Getters and Setters ************************/
@@ -32,7 +33,7 @@ public class QASystem implements IQASystem
 		this.questionsQueue = new LinkedList<IQuestion>();
 		this.processedQuestionsQueue = new LinkedList<IQuestion>();
 		this.questionProccessor = new QuestionProcessor(this.questionsQueue,this.QUESTIONFILENAME);
-		this.passageRetriever = new PassageRetriever(this.questionsQueue,this.processedQuestionsQueue);
+		this.passageRetriever = new PassageRetriever(this.questionsQueue,this.processedQuestionsQueue,RELEVANTDOCSPATH+"top_docs.");
 		this.answerGenerator = new AnswerGenerator(this.processedQuestionsQueue);
 	}
 	
