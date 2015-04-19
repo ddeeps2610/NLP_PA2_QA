@@ -13,10 +13,9 @@ public class RunQA {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
 		IQASystem qaSystem = new QASystem();
 		qaSystem.execute();
-		
-
 	}
 
 }
