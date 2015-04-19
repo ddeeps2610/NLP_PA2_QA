@@ -21,7 +21,7 @@ public class Question implements IQuestion
 	private QuestionType questionType;
 	//private LinkedList<AnswerType> answerTypes;
 	private String answerTypes;
-	private LinkedList<String> keywords;
+	private String keywords;
 	
 	/*********************** Getters and Setters ************************/
 	
@@ -105,19 +105,13 @@ public class Question implements IQuestion
 		this.answers.add(answer);
 	}
 	
-	public LinkedList<String> getKeywords() {
+	public String getKeywords() {
 		return keywords;
 	}
 	
-	public void setKeywords(LinkedList<String> keywords) {
+	public void setKeywords(String keywords) {
 		this.keywords = keywords;
 	}
 
-	public void addKeywords(String keyword)
-	{
-		if(this.keywords == null)
-			this.keywords = new LinkedList<String>();
-		this.keywords.add(keyword);
-	}
   
 }

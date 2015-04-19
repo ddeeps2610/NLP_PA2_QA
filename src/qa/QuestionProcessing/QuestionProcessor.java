@@ -84,7 +84,9 @@ public class QuestionProcessor implements IQuestionProcessor {
 			}
 			
 			// Extract keywords
-			question.setKeywords((LinkedList<String>) InformationExtraction.extractKeywords(question.getQuestion()));
+			question.setKeywords(InformationExtraction.extractKeywords(question.getQuestion()));
+			
+			System.out.println(question.getqID()+":"+question.getQuestion()+":" + question.getQuestionType()+":"+question.getAnswerTypes()+":"+question.getKeywords());
 		}
 		
 	}

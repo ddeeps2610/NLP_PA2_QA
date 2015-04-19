@@ -11,7 +11,7 @@ import java.util.List;
  *
  */
 public class InformationExtraction {
-	public static List<String> extractKeywords(String sentence)
+	public static String extractKeywords(String sentence)
 	{
 		return null;
 	}

@@ -41,8 +41,8 @@ public class QASystem implements IQASystem
 	public void execute() 
 	{
 		this.questionProccessor.run();
-		this.passageRetriever.run();
-		this.answerGenerator.run();
+		//this.passageRetriever.run();
+		//this.answerGenerator.run();
 		
 	}
 }

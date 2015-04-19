@@ -19,7 +19,7 @@ public interface IQuestion
 	public QuestionType getQuestionType();
 	//public LinkedList<AnswerType> getAnswerTypes();
 	public String getAnswerTypes();
-	public LinkedList<String> getKeywords();
+	public String getKeywords();
 	
 	public void setQuestion(String question);
 	public void addAnswerPattern(String answerPattern);
@@ -29,7 +29,7 @@ public interface IQuestion
 	public void setQuestionType(QuestionType questionType);
 	//public void addAnswerType(AnswerType answerType);
 	public void setAnswerTypes(String answerTypes);
-	public void addKeywords(String keyword);
-	public void setKeywords(LinkedList<String> keywords);
+	//public void addKeywords(String keyword);
+	public void setKeywords(String keywords);
 	
 }
