@@ -47,7 +47,7 @@ public class QuestionProcessor implements IQuestionProcessor {
 		this.qaTypesMap.put(QuestionType.WHOM, 		AnswerType.PERSON.toString());
 		
 		// Multiple possible Answer Types.
-		this.qaTypesMap.put(QuestionType.WHEN, 		AnswerType.DATE.toString() + AnswerType.TIME.toString());		
+		this.qaTypesMap.put(QuestionType.WHEN, 		AnswerType.DATE.toString() +"|"+ AnswerType.TIME.toString());		
 		
 		// Need to handle for sub categories
 		this.qaTypesMap.put(QuestionType.WHAT, 		"LOCATION|NP|NNP|NOUN|VERB|DEFINITION|NUMBER");
