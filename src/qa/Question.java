@@ -19,7 +19,8 @@ public class Question implements IQuestion
 	private LinkedList<String> relevantPassages;
 	private LinkedList<String> answers;
 	private QuestionType questionType;
-	private LinkedList<AnswerType> answerTypes;
+	//private LinkedList<AnswerType> answerTypes;
+	private String answerTypes;
 	private LinkedList<String> keywords;
 	
 	/*********************** Getters and Setters ************************/
@@ -40,7 +41,7 @@ public class Question implements IQuestion
 		this.questionType = questionType;
 	}
 
-	public LinkedList<AnswerType> getAnswerTypes() {
+	/*public LinkedList<AnswerType> getAnswerTypes() {
 		return this.answerTypes;
 	}
 
@@ -49,9 +50,22 @@ public class Question implements IQuestion
 			this.answerTypes = new LinkedList<AnswerType>();
 		this.answerTypes.add(answerType);
 	}
-
+	
+	*/
+	
+	
 	public Integer getqID() {
 		return qID;
+	}
+
+	
+
+	public String getAnswerTypes() {
+		return answerTypes;
+	}
+
+	public void setAnswerTypes(String answerTypes) {
+		this.answerTypes = answerTypes;
 	}
 
 	public void setqID(Integer qID) {

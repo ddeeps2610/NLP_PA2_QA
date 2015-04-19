@@ -8,17 +8,18 @@ package qa;
  *
  */
 public enum QuestionType {
-	WHEN,
 	WHERE,
-	WHY,
-	DESCRIBE,
-	DEFINE,
 	WHO,
 	WHOM,
+	WHEN,
 	WHAT,
 	WHICH,
 	NAME,
+	HOW_MANY,
 	HOW,
+	WHY,
+	DESCRIBE,
+	DEFINE,
 	OTHERS
 	
 }
