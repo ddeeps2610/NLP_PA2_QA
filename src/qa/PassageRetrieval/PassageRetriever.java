@@ -15,6 +15,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.lucene.search.TopDocs;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -181,8 +182,9 @@ public class PassageRetriever implements IPassageRetriever {
 				//System.out.println("__________DOCUMENT "+(i+1)+"_________");
 				//System.out.println(top10Documents.get(i));
 				
-				passagesList = getXMLOutputforAllDocs(top10Documents.get(i).trim());
-				
+				//passagesList = getXMLOutputforAllDocs(top10Documents.get(i).trim());
+				passagesList.addAll(getXMLOutputforAllDocs(top10Documents.get(i).trim()));
+			}	
 			    //System.out.println("passagesList: "+passagesList.size());
 				if (!passagesList.isEmpty()) {
 					for (int j = 0; j < passagesList.size(); j++) {
@@ -191,7 +193,7 @@ public class PassageRetriever implements IPassageRetriever {
 					}	
 						
 					List<String> candidatePassages = new ArrayList<String>();
-					candidatePassages = Lucene.LuceneComputation(passagesList,2, keywords);
+					candidatePassages = Lucene.LuceneComputation(passagesList,10, keywords);
 					relevantPassages.addAll(candidatePassages);
 					if (!candidatePassages.isEmpty()) {
 //						for (int k = 0; k < candidatePassages.size(); k++) {
@@ -199,12 +201,12 @@ public class PassageRetriever implements IPassageRetriever {
 //						} 
 					}
 					else
-						System.out.println("CandidatePassagesList for Document "+i+" is empty.");	
+						System.out.println("CandidatePassagesList for Document "+" is empty.");	
 					} 
 				else
-					System.out.println("PassagesList for Document "+i+" is empty.");
+					System.out.println("PassagesList for Document "+" is empty.");
 			}
-			}
+			
 			else
 				System.out.println("Top10DocumentsList is empty");
 		

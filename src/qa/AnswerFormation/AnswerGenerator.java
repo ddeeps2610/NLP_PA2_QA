@@ -4,6 +4,7 @@
 package qa.AnswerFormation;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Queue;
 
@@ -36,12 +37,15 @@ public class AnswerGenerator implements IAnswerGenerator {
 			for(String passage : question.getRelevantPassages()) {
 				String nerTaggedPassage = getNERTagging(passage);
 				String posTaggedPassage = getPOSTagging(passage);
+				HashSet<String> answers = new HashSet<String>();
 				List<String> output = getDataFromNEROutput(nerTaggedPassage, question.getAnswerTypes());
 				output.addAll(getDataFromNEROutput(posTaggedPassage, question.getAnswerTypes()));
-				
 				// not to be added to final code
 				for(String answer : output) {
-					question.addAnswer(answer);
+					if(!question.getQuestion().toLowerCase().contains(answer.toLowerCase()) && !answers.contains(answer)) {
+						answers.add(answer);
+						question.addAnswer(answer);
+					}
 				}
 //				if(output.size() == 1) {
 //					question.addAnswer(output.get(0));
