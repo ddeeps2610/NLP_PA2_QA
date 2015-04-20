@@ -66,7 +66,6 @@ public class QuestionProcessor implements IQuestionProcessor {
 	public void run() {
 		for(IQuestion question : this.inputQuestions)
 		{
-			this.questionsQueue.add(question);
 			for(Entry<QuestionType, String> entry:this.qaTypesMap.entrySet())
 			{
 				// Identify the question and answer types

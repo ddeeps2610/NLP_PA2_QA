@@ -3,15 +3,12 @@
  */
 package qa.AnswerFormation;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
 import qa.IQuestion;
-import edu.stanford.nlp.ie.AbstractSequenceClassifier;
-import edu.stanford.nlp.ie.crf.CRFClassifier;
-import edu.stanford.nlp.ling.CoreLabel;
+import qa.Utility;
 
 /**
  * @author Deepak
@@ -19,28 +16,6 @@ import edu.stanford.nlp.ling.CoreLabel;
  */
 public class AnswerGenerator implements IAnswerGenerator {
 
-	/**
-	 * 
-	 */
-	private static String serializedClassifier;// = "classifiers/english.all.7class.distsim.crf.ser.gz";
-	
-	/**
-	 * 
-	 */
-	private static AbstractSequenceClassifier<CoreLabel> classifier;// = CRFClassifier.getClassifier(serializedClassifier);
-
-	/**
-	 * 
-	 */
-	static {
-		serializedClassifier = "classifiers/english.all.7class.distsim.crf.ser.gz";
-		try {
-			classifier = CRFClassifier.getClassifier(serializedClassifier);
-		} catch (ClassCastException | ClassNotFoundException | IOException ex) {
-			System.err.println(ex.getMessage());
-		}			  	
-	}
-	
 	/**
 	 * 
 	 * @param processedQuestionsQueue
@@ -55,8 +30,6 @@ public class AnswerGenerator implements IAnswerGenerator {
 	 */
 	@Override
 	public void run() {
-		for(int i = 0; i < 10; i++)
-			System.out.println();
 		
 		while(!processedQuestionsQueue.isEmpty()) {
 			IQuestion question = processedQuestionsQueue.poll();
@@ -81,7 +54,7 @@ public class AnswerGenerator implements IAnswerGenerator {
 	 * @return
 	 */
 	private String getNERTagging(String sentence) {
-		return classifier.classifyToString(sentence);
+		return Utility.NERClassifier.classifyToString(sentence);
 	}
 	
 	/**
@@ -95,7 +68,7 @@ public class AnswerGenerator implements IAnswerGenerator {
 		StringBuilder temp = new StringBuilder();
 		
 		String[] nerOutputArray = nerOutput.split("[/\\s]");
-		String[] tags = tagName.split("|");
+		String[] tags = tagName.split("\\|");
 		
 		for(String tag : tags) {		
 			for(int arrayIndex = 1; arrayIndex < nerOutputArray.length; arrayIndex+=2) {

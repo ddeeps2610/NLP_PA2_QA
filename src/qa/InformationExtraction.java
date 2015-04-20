@@ -4,7 +4,6 @@
 package qa;
 
 import java.util.HashMap;
-import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 /**
  * @author Deepak
@@ -14,10 +13,7 @@ public class InformationExtraction {
 		
 	private static String keywordsPattern = "[?(){}\\[\\]\\/]" ; 
 	private static HashMap<String, String> posHashMap = new HashMap<String, String>();
-	private static MaxentTagger tagger;
-	static {
-		tagger = new MaxentTagger("External Lib/taggers/english-left3words-distsim.tagger");
-		
+	static {		
 		posHashMap.put("NN", "Noun");
 		posHashMap.put("NNP", "Proper Noun");
 		posHashMap.put("JJ", "Adjective");
@@ -28,7 +24,7 @@ public class InformationExtraction {
 		String keywordsString = "";
 		question = question.replaceAll(keywordsPattern, " ");
 			
-		String taggedQues = tagger.tagString(question);
+		String taggedQues = Utility.Tagger.tagString(question);
 		String [] quesTags = taggedQues.split("_|\\s");
 		
 		String start = "\"";
