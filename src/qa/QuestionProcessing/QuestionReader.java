@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import qa.IQuestion;
@@ -34,7 +33,7 @@ public class QuestionReader implements IQuestionReader{
 	public LinkedList<IQuestion> readQuestions() 
 	{
 		File questionsFile = new File(this.questionsFileName);
-		if(questionsFile == null)
+		if(questionsFile == null || !questionsFile.exists())
 		{
 			System.out.println("Questions file is not found...!!!");
 			System.exit(0);
@@ -70,8 +69,8 @@ public class QuestionReader implements IQuestionReader{
 					else if(!line.isEmpty() && !line.contains("Number"))
 					{
 						newQuestion.setQuestion(line);
-						System.out.print("QID:" +newQuestion.getqID());
-						System.out.println(" :: "+newQuestion.getQuestion());
+//						System.out.print("QID:" +newQuestion.getqID());
+//						System.out.println(" :: "+newQuestion.getQuestion());
 						this.questions.add(newQuestion);
 						newQuestion = null;
 					}
@@ -103,7 +102,6 @@ public class QuestionReader implements IQuestionReader{
 		for(QuestionType qType : qTypes)
 		{
 			System.out.println(qType.toString());
-			String[] questions;
 			for(IQuestion question : this.questions)
 			{
 				if(question.getQuestion().toUpperCase().contains(qType.toString()))

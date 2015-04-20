@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -45,11 +44,6 @@ public class Lucene {
 			addDocuments(w, passage);
 		}
 		w.close();
-		
-		//Query Words
-		String querystr = //"Which Hockey team did Wayne Gretzky play for?";
-				"owns CNN?";
-		//args.length > 0 ? args[0] : "action";
 
 		Query q = new QueryParser("description", analyzer).parse(question);
 
@@ -61,13 +55,11 @@ public class Lucene {
 		searcher.search(q, collector);
 		ScoreDoc[] hits = collector.topDocs().scoreDocs;
 
-		//System.out.println(hits.length + " most Lucene relevant.");
 		for(int i=0;i<hits.length;++i) {
-				int docId = hits[i].doc;
-				Document d = searcher.doc(docId);
-				//System.out.println((i + 1) + ". " + d.get("description"));
-				retList.add(i,d.get("description"));
-				
+			int docId = hits[i].doc;
+			Document d = searcher.doc(docId);
+			//System.out.println((i + 1) + ". " + d.get("description"));
+			retList.add(i,d.get("description"));
 		}
 
 		reader.close();

@@ -15,7 +15,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.lucene.search.TopDocs;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -53,16 +52,13 @@ public class PassageRetriever implements IPassageRetriever {
 			List<String> TopDocs = new LinkedList<String>();
 			TopDocs = PassageReader.splitDocuments(filename + question.getqID());
 			
-			//String question = "What province is Edmonton located in?";				//CHANGE to question from question object
-			String keywordString = question.getKeywords();
-			//System.out.println("Keyword String: " + keywordString);
 				
 			if (!TopDocs.isEmpty()) {
 				
 //				}
 				
 				List<String> candidateDocuments = new ArrayList<String>();
-				candidateDocuments = Lucene.LuceneComputation(TopDocs,10,keywordString);
+				candidateDocuments = Lucene.LuceneComputation(TopDocs, 10, question.getKeywords());
 				
 //				System.out.println("**********RELEVANT DOCUMENTS**********");
 				
@@ -71,15 +67,15 @@ public class PassageRetriever implements IPassageRetriever {
 //						System.out.println(k+1 + ":\t"+candidateDocuments.get(k));
 //					}
 					
-					List<String> relevantPassages = getRelevantPassages(candidateDocuments, keywordString);
+					List<String> relevantPassages = getRelevantPassages(candidateDocuments, question.getKeywords());
 //					System.out.println("**********RELEVANT PASSAGES**********");
 					question.addAllRelevantPassages(relevantPassages);
 					this.processedQuestionsQueue.add(question);
-//					if (!relevantPassages.isEmpty()) {
-//						for (int k = 0; k < relevantPassages.size(); k++) {
-//							System.out.println(k+1 + ":\t"+relevantPassages.get(k));
-//						}					
-//					}
+					if (!relevantPassages.isEmpty()) {
+						for (int k = 0; k < relevantPassages.size(); k++) {
+							System.out.println(k+1 + ":\t"+relevantPassages.get(k));
+						}					
+					}
 					
 //					List<String> relevantSentences = PostPassageRetrieval.sentenceTokenizer(relevantPassages);
 //					System.out.println("**********RELEVANT SENTENCES**********");
@@ -109,43 +105,31 @@ public class PassageRetriever implements IPassageRetriever {
 		}
 	}
 	
-	public static List<String> parseXMLDocument(Node node, List<String> passagesList ) {
+	private List<String> parseXMLDocument(Node node, List<String> passagesList ) {
 		
 	    NodeList nodeList = node.getChildNodes();
-	    String nodeName = null;    
-        nodeName = node.getNodeName();   	
 	    for (int i = 0; i < nodeList.getLength(); i++) {
 	    	
 	        Node currentNode = nodeList.item(i);
 	        if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
 	        	parseXMLDocument(currentNode, passagesList);		        	
 	        } else {	        	
-	        	//System.out.println(nodeName);
 	        	String temp = currentNode.getTextContent().trim();
-	        	//System.out.println(temp);
 	        	if (!temp.isEmpty()) {
-	        		if (nodeName.equals("TEXT")) {
-		        		//System.out.println("Inside Text Splitting..");
+	        		if (temp.length() > 1000) {
 		        		String[] tempSplit = temp.split("\\s\\s|;");
-//		        		for (int j = 0; j < tempSplit.length; j++) {
-//							System.out.println(tempSplit[j]);
-//						} 
 		        		List<String> splitList = Arrays.asList(tempSplit);
 		        		passagesList.addAll(splitList);
+	        		} else {
+	        			passagesList.add(temp);
 	        		}
-	        	else
-	        		passagesList.add(temp);
+	        	}
 	        }
-	    }
-	       
-//	    for (int j = 0; j < passagesList.size(); j++) {
-//			System.out.println(passagesList.get(j));
-//		}   
 	    }
 	    return passagesList;
 	}
 	
-	static List<String> getXMLOutputforAllDocs(String eachDocument)
+	private List<String> getXMLOutputforAllDocs(String eachDocument)
 	{		
 	
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -158,10 +142,6 @@ public class PassageRetriever implements IPassageRetriever {
 			Document doc = dBuilder.parse(input);
 			doc.getDocumentElement().normalize();
 			passagesList = parseXMLDocument(doc.getDocumentElement(), passagesList);
-//			System.out.println("Passage: "+passagesList.size());
-//			for (int i = 0; i < passagesList.size(); i++) {
-//				System.out.println(passagesList.get(i));
-//			}   
 		
 		} catch (ParserConfigurationException e) {
 			System.err.println(e.getMessage());
@@ -173,7 +153,7 @@ public class PassageRetriever implements IPassageRetriever {
 		return passagesList;
 	}
 	
-	static List<String> getRelevantPassages (List<String> top10Documents, String keywords) {
+	private List<String> getRelevantPassages (List<String> top10Documents, String keywords) {
 		List <String> passagesList = new ArrayList<String>();
 		List <String> relevantPassages = new ArrayList<>();
 		
@@ -182,16 +162,15 @@ public class PassageRetriever implements IPassageRetriever {
 				//System.out.println("__________DOCUMENT "+(i+1)+"_________");
 				//System.out.println(top10Documents.get(i));
 				
-				//passagesList = getXMLOutputforAllDocs(top10Documents.get(i).trim());
 				passagesList.addAll(getXMLOutputforAllDocs(top10Documents.get(i).trim()));
 			}	
 			    //System.out.println("passagesList: "+passagesList.size());
 				if (!passagesList.isEmpty()) {
-					for (int j = 0; j < passagesList.size(); j++) {
-						//System.out.println(passagesList.get(j));
-						//System.out.print("\n");
-					}	
-						
+//					for (int j = 0; j < passagesList.size(); j++) {
+//						//System.out.println(passagesList.get(j));
+//						//System.out.print("\n");
+//					}	
+//						
 					List<String> candidatePassages = new ArrayList<String>();
 					candidatePassages = Lucene.LuceneComputation(passagesList,10, keywords);
 					relevantPassages.addAll(candidatePassages);
@@ -212,7 +191,4 @@ public class PassageRetriever implements IPassageRetriever {
 		
 	return relevantPassages;
 	}
-	
-	
-
 }

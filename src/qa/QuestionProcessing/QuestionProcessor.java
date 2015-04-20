@@ -4,7 +4,6 @@
 package qa.QuestionProcessing;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.Queue;
 
@@ -37,7 +36,6 @@ public class QuestionProcessor implements IQuestionProcessor {
 	
 	private void updateQATypes()
 	{
-		// TODO
 		//AnswerTypes: Time, Location, Organization, Person, Money, Percent, Date, REASON,DESCRIPTION,DEFINITION
 		//QuestionTypes: WHEN,WHERE,WHY,DESCRIBE,DEFINE,WHO,WHOM,WHAT,WHICH,NAME,HOW,OTHERS
 		
@@ -87,10 +85,7 @@ public class QuestionProcessor implements IQuestionProcessor {
 			// Extract keywords
 			question.setKeywords(InformationExtraction.extractKeywords(question.getQuestion()));
 			this.questionsQueue.add(question);
-			
 			System.out.println(question.getqID()+":"+question.getQuestion()+":" + question.getQuestionType()+":"+question.getAnswerTypes()+":"+question.getKeywords());
-		}
-		
+		}		
 	}
-
 }
