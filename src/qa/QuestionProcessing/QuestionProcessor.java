@@ -42,24 +42,24 @@ public class QuestionProcessor implements IQuestionProcessor {
 		//QuestionTypes: WHEN,WHERE,WHY,DESCRIBE,DEFINE,WHO,WHOM,WHAT,WHICH,NAME,HOW,OTHERS
 		
 		// Definite QA Match
-		this.qaTypesMap.put(QuestionType.WHERE, 	"LOCATION");		
-		this.qaTypesMap.put(QuestionType.WHO, 		"PERSON");
-		this.qaTypesMap.put(QuestionType.WHOM, 		"PERSON");
+		this.qaTypesMap.put(QuestionType.WHERE, 	"NER:LOCATION");		
+		this.qaTypesMap.put(QuestionType.WHO, 		"NER:PERSON");
+		this.qaTypesMap.put(QuestionType.WHOM, 		"NER:PERSON");
 		
 		// Multiple possible Answer Types.
-		this.qaTypesMap.put(QuestionType.WHEN, 		"DATE|TIME");		
+		this.qaTypesMap.put(QuestionType.WHEN, 		"NER:DATE|NER:TIME");		
 		
 		// Need to handle for sub categories
-		this.qaTypesMap.put(QuestionType.WHAT, 		"LOCATION|[NP]|[NNP]|POS:NN|VB|NER:DEFINITION|NUMBER");
-		this.qaTypesMap.put(QuestionType.WHICH, 	"LOCATION|NP|NNP|NN|VB|DEFINITION|NUMBER");
-		this.qaTypesMap.put(QuestionType.NAME, 		"LOCATION|NP|NNP|NN|VB|DEFINITION|NUMBER");
-		this.qaTypesMap.put(QuestionType.HOW_MANY, 	"NUMBER");
-		this.qaTypesMap.put(QuestionType.HOW, 		"NNP|DEFINITION");
+		this.qaTypesMap.put(QuestionType.WHAT, 		"NER:LOCATION|POS:NP|POS:NNP|POS:NN|POS:VB|NER:DEFINITION|NER:NUMBER");
+		this.qaTypesMap.put(QuestionType.WHICH, 	"NER:LOCATION|POS:NP|POS:NNP|POS:NN|POS:VB|NER:DEFINITION|NER:NUMBER");
+		this.qaTypesMap.put(QuestionType.NAME, 		"NER:LOCATION|POS:NP|POS:NNP|POS:NN|POS:VB|NER:DEFINITION|NER:NUMBER");
+		this.qaTypesMap.put(QuestionType.HOW_MANY, 	"NER:NUMBER");
+		this.qaTypesMap.put(QuestionType.HOW, 		"POS:NNP|NER:DEFINITION");
 
 		// Non Standard Answer Types
-		this.qaTypesMap.put(QuestionType.WHY, 		"REASON");
-		this.qaTypesMap.put(QuestionType.DESCRIBE,	"DESCRIPTION");
-		this.qaTypesMap.put(QuestionType.DEFINE, 	"DEFINITION");
+		this.qaTypesMap.put(QuestionType.WHY, 		"NER:REASON");
+		this.qaTypesMap.put(QuestionType.DESCRIBE,	"NER:DESCRIPTION");
+		this.qaTypesMap.put(QuestionType.DEFINE, 	"NER:DEFINITION");
 	}
 
 	@Override
