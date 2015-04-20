@@ -17,17 +17,23 @@ public enum AnswerType {
 	PERCENT,
 	DATE,
 	
+	// Additional NER tags from NERClassifierCombiner
+	NUMBER,
+	MISC,
+	ORDINAL,
+	DURATION,
+	SET,
+	
 	// Other Answer Types
 	REASON,
 	DESCRIPTION,
 	DEFINITION,
 	
-	// GENERICS - Hypernyms
-	NUMBER,
-	
 	// POS Tags
-	NOUN,
-	VERB,
+	NP,
+	NNP,
+	NN,
+	VB,
 	
 	// NONE
 	NONE,

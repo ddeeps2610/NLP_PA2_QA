@@ -42,23 +42,24 @@ public class QuestionProcessor implements IQuestionProcessor {
 		//QuestionTypes: WHEN,WHERE,WHY,DESCRIBE,DEFINE,WHO,WHOM,WHAT,WHICH,NAME,HOW,OTHERS
 		
 		// Definite QA Match
-		this.qaTypesMap.put(QuestionType.WHERE, 	AnswerType.LOCATION.toString());		
-		this.qaTypesMap.put(QuestionType.WHO, 		AnswerType.PERSON.toString());
-		this.qaTypesMap.put(QuestionType.WHOM, 		AnswerType.PERSON.toString());
+		this.qaTypesMap.put(QuestionType.WHERE, 	"LOCATION");		
+		this.qaTypesMap.put(QuestionType.WHO, 		"PERSON");
+		this.qaTypesMap.put(QuestionType.WHOM, 		"PERSON");
 		
 		// Multiple possible Answer Types.
-		this.qaTypesMap.put(QuestionType.WHEN, 		AnswerType.DATE.toString() +"|"+ AnswerType.TIME.toString());		
+		this.qaTypesMap.put(QuestionType.WHEN, 		"DATE|TIME");		
 		
 		// Need to handle for sub categories
-		this.qaTypesMap.put(QuestionType.WHAT, 		"LOCATION|NP|NNP|NOUN|VERB|DEFINITION|NUMBER");
-		this.qaTypesMap.put(QuestionType.WHICH, 	"LOCATION|NP|NNP|NOUN|VERB|DEFINITION|NUMBER");
-		this.qaTypesMap.put(QuestionType.NAME, 		"LOCATION|NP|NNP|NOUN|VERB|DEFINITION|NUMBER");
+		this.qaTypesMap.put(QuestionType.WHAT, 		"LOCATION|[NP]|[NNP]|POS:NN|VB|NER:DEFINITION|NUMBER");
+		this.qaTypesMap.put(QuestionType.WHICH, 	"LOCATION|NP|NNP|NN|VB|DEFINITION|NUMBER");
+		this.qaTypesMap.put(QuestionType.NAME, 		"LOCATION|NP|NNP|NN|VB|DEFINITION|NUMBER");
+		this.qaTypesMap.put(QuestionType.HOW_MANY, 	"NUMBER");
 		this.qaTypesMap.put(QuestionType.HOW, 		"NNP|DEFINITION");
-		
+
 		// Non Standard Answer Types
-		this.qaTypesMap.put(QuestionType.WHY, 		AnswerType.REASON.toString());
-		this.qaTypesMap.put(QuestionType.DESCRIBE,	AnswerType.DESCRIPTION.toString());
-		this.qaTypesMap.put(QuestionType.DEFINE, 	AnswerType.DEFINITION.toString());
+		this.qaTypesMap.put(QuestionType.WHY, 		"REASON");
+		this.qaTypesMap.put(QuestionType.DESCRIBE,	"DESCRIPTION");
+		this.qaTypesMap.put(QuestionType.DEFINE, 	"DEFINITION");
 	}
 
 	@Override
@@ -85,6 +86,7 @@ public class QuestionProcessor implements IQuestionProcessor {
 			
 			// Extract keywords
 			question.setKeywords(InformationExtraction.extractKeywords(question.getQuestion()));
+			this.questionsQueue.add(question);
 			
 			System.out.println(question.getqID()+":"+question.getQuestion()+":" + question.getQuestionType()+":"+question.getAnswerTypes()+":"+question.getKeywords());
 		}
