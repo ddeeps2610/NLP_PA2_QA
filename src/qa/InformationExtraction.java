@@ -36,7 +36,6 @@ public class InformationExtraction {
 			
 		String taggedQues = Utility.Tagger.tagString(question);
 		String [] quesTags = taggedQues.split("_|\\s");
-		System.out.println(taggedQues);
 		String start = "\"";
 		int startIndex = question.indexOf(start);
 		int lastIndex = question.lastIndexOf(start);		

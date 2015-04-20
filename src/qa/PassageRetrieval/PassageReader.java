@@ -48,7 +48,7 @@ static List<String> splitDocuments(String filename) {
 			try {
 				if (br != null)
 					br.close();
-				System.out.println("Number of documents fed : "+TopDocs.size());
+				//System.out.println("Number of documents fed : "+TopDocs.size());
 				
 			} catch (IOException ex) {
 				ex.printStackTrace();

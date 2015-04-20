@@ -72,14 +72,14 @@ public class PassageRetriever implements IPassageRetriever {
 //					}
 					
 					List<String> relevantPassages = getRelevantPassages(candidateDocuments, keywordString);
-					System.out.println("**********RELEVANT PASSAGES**********");
+//					System.out.println("**********RELEVANT PASSAGES**********");
 					question.addAllRelevantPassages(relevantPassages);
 					this.processedQuestionsQueue.add(question);
-					if (!relevantPassages.isEmpty()) {
-						for (int k = 0; k < relevantPassages.size(); k++) {
-							System.out.println(k+1 + ":\t"+relevantPassages.get(k));
-						}					
-					}
+//					if (!relevantPassages.isEmpty()) {
+//						for (int k = 0; k < relevantPassages.size(); k++) {
+//							System.out.println(k+1 + ":\t"+relevantPassages.get(k));
+//						}					
+//					}
 					
 //					List<String> relevantSentences = PostPassageRetrieval.sentenceTokenizer(relevantPassages);
 //					System.out.println("**********RELEVANT SENTENCES**********");

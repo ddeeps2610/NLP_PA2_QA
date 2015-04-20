@@ -34,10 +34,10 @@ public class AnswerGenerator implements IAnswerGenerator {
 		
 		while(!processedQuestionsQueue.isEmpty()) {
 			IQuestion question = processedQuestionsQueue.poll();
+			HashSet<String> answers = new HashSet<String>();
 			for(String passage : question.getRelevantPassages()) {
 				String nerTaggedPassage = getNERTagging(passage);
 				String posTaggedPassage = getPOSTagging(passage);
-				HashSet<String> answers = new HashSet<String>();
 				List<String> output = getDataFromNEROutput(nerTaggedPassage, question.getAnswerTypes());
 				output.addAll(getDataFromNEROutput(posTaggedPassage, question.getAnswerTypes()));
 				// not to be added to final code
