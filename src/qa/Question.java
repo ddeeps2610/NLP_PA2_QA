@@ -18,7 +18,7 @@ public class Question implements IQuestion
 	private String question;
 	private LinkedList<String> answerPatterns;
 	private LinkedList<String> relevantPassages;
-	private LinkedList<String> answers;
+	private LinkedList<String> answers = new LinkedList<String>();
 	private QuestionType questionType;
 	//private LinkedList<AnswerType> answerTypes;
 	private String answerTypes;

@@ -27,15 +27,15 @@ public class QASystem implements IQASystem
 	private IQuestionProcessor questionProccessor;
 	private IPassageRetriever passageRetriever;
 	private IAnswerGenerator answerGenerator;
-	private static String QUESTIONFILENAME= "qadata/test/questions.txt";
-	private static String RELEVANTDOCSPATH= "topdocs/test/";
+	private String QUESTIONFILENAME= "qadata/test/questions.txt";
+	private String RELEVANTDOCSPATH= "topdocs/test/";
 	
 
 	/*********************** Getters and Setters ************************/
 	public QASystem() {
 		this.questionsQueue = new LinkedList<IQuestion>();
 		this.processedQuestionsQueue = new LinkedList<IQuestion>();
-		this.questionProccessor = new QuestionProcessor(this.questionsQueue,this.QUESTIONFILENAME);
+		this.questionProccessor = new QuestionProcessor(this.questionsQueue, QUESTIONFILENAME);
 		this.passageRetriever = new PassageRetriever(this.questionsQueue,this.processedQuestionsQueue,RELEVANTDOCSPATH+"top_docs.");
 		this.processedQuestions = new ArrayList<IQuestion>();
 		this.answerGenerator = new AnswerGenerator(this.processedQuestionsQueue, this.processedQuestions);
@@ -46,8 +46,21 @@ public class QASystem implements IQASystem
 	public void execute() 
 	{
 		this.questionProccessor.run();
-		//this.passageRetriever.run();
-		//this.answerGenerator.run();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.passageRetriever.run();
+		try {
+			Thread.sleep(70000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		this.answerGenerator.run();
 		
 	}
 }

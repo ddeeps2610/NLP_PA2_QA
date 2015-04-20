@@ -58,48 +58,46 @@ public class PassageRetriever implements IPassageRetriever {
 				
 			if (!TopDocs.isEmpty()) {
 				
-				for (int i = 1; i < TopDocs.size(); i++) {
-					System.out.println("__________DOCUMENT "+i+"_________");
-					System.out.println(TopDocs.get(i));					
-				}
+//				}
 				
 				List<String> candidateDocuments = new ArrayList<String>();
 				candidateDocuments = Lucene.LuceneComputation(TopDocs,10,keywordString);
 				
-				System.out.println("**********RELEVANT DOCUMENTS**********");
+//				System.out.println("**********RELEVANT DOCUMENTS**********");
 				
 				if (!candidateDocuments.isEmpty()) {
-					for (int k = 0; k < candidateDocuments.size(); k++) {
-						System.out.println(k+1 + ":\t"+candidateDocuments.get(k));
-					}
+//					for (int k = 0; k < candidateDocuments.size(); k++) {
+//						System.out.println(k+1 + ":\t"+candidateDocuments.get(k));
+//					}
 					
 					List<String> relevantPassages = getRelevantPassages(candidateDocuments, keywordString);
 					System.out.println("**********RELEVANT PASSAGES**********");
+					question.addAllRelevantPassages(relevantPassages);
+					this.processedQuestionsQueue.add(question);
 					if (!relevantPassages.isEmpty()) {
 						for (int k = 0; k < relevantPassages.size(); k++) {
 							System.out.println(k+1 + ":\t"+relevantPassages.get(k));
-						}
-					
+						}					
 					}
 					
-					List<String> relevantSentences = PostPassageRetrieval.sentenceTokenizer(relevantPassages);
-					System.out.println("**********RELEVANT SENTENCES**********");
-					if (!relevantSentences.isEmpty()) {
-						for (int k = 0; k < relevantSentences.size(); k++) {
-							System.out.println(k+1 + ":\t"+relevantSentences.get(k));
-						}
-										
-						List<String> rankedSentences = new ArrayList<String>();
-						rankedSentences = Lucene.LuceneComputation(relevantSentences,relevantSentences.size(),question.getKeywords());
-						System.out.println("**********RANKED SENTENCES**********");
-						question.addAllRelevantPassages(rankedSentences);	
-						this.processedQuestionsQueue.add(question);
-						if (!rankedSentences.isEmpty()) {
-							for (int k = 0; k < rankedSentences.size(); k++) {
-								System.out.println(k+1 + ":\t"+rankedSentences.get(k));
-							}			
-						}
-					}
+//					List<String> relevantSentences = PostPassageRetrieval.sentenceTokenizer(relevantPassages);
+//					System.out.println("**********RELEVANT SENTENCES**********");
+//					if (!relevantSentences.isEmpty()) {
+//						for (int k = 0; k < relevantSentences.size(); k++) {
+//							System.out.println(k+1 + ":\t"+relevantSentences.get(k));
+//						}
+//										
+//						List<String> rankedSentences = new ArrayList<String>();
+//						rankedSentences = Lucene.LuceneComputation(relevantSentences,relevantSentences.size(),question.getKeywords());
+//						System.out.println("**********RANKED SENTENCES**********");
+//						//question.addAllRelevantPassages(rankedSentences);	
+//						
+//						if (!rankedSentences.isEmpty()) {
+//							for (int k = 0; k < rankedSentences.size(); k++) {
+//								System.out.println(k+1 + ":\t"+rankedSentences.get(k));
+//							}			
+//						}
+//					}
 				}
 				else {
 					System.out.println("Candidate Passages List is empty.");	
@@ -159,10 +157,10 @@ public class PassageRetriever implements IPassageRetriever {
 			Document doc = dBuilder.parse(input);
 			doc.getDocumentElement().normalize();
 			passagesList = parseXMLDocument(doc.getDocumentElement(), passagesList);
-				System.out.println("Passage: "+passagesList.size());
-			for (int i = 0; i < passagesList.size(); i++) {
-				System.out.println(passagesList.get(i));
-			}   
+//			System.out.println("Passage: "+passagesList.size());
+//			for (int i = 0; i < passagesList.size(); i++) {
+//				System.out.println(passagesList.get(i));
+//			}   
 		
 		} catch (ParserConfigurationException e) {
 			System.err.println(e.getMessage());
@@ -196,9 +194,9 @@ public class PassageRetriever implements IPassageRetriever {
 					candidatePassages = Lucene.LuceneComputation(passagesList,2, keywords);
 					relevantPassages.addAll(candidatePassages);
 					if (!candidatePassages.isEmpty()) {
-						for (int k = 0; k < candidatePassages.size(); k++) {
-						System.out.println(k+1 + ":\t"+candidatePassages.get(k));
-						} 
+//						for (int k = 0; k < candidatePassages.size(); k++) {
+//						System.out.println(k+1 + ":\t"+candidatePassages.get(k));
+//						} 
 					}
 					else
 						System.out.println("CandidatePassagesList for Document "+i+" is empty.");	

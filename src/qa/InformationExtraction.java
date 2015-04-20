@@ -18,6 +18,15 @@ public class InformationExtraction {
 		posHashMap.put("NNP", "Proper Noun");
 		posHashMap.put("JJ", "Adjective");
 		posHashMap.put("VB", "Verb");
+		posHashMap.put("JJR", "Compartive Adjective");
+		posHashMap.put("JJS", "Adjective Singular");
+		posHashMap.put("NNS", "Noun Plural");
+		posHashMap.put("NNPS", "Proper Noun");
+		posHashMap.put("VBD", "Verb D");
+		posHashMap.put("VBG", "Present Participle");
+		posHashMap.put("VBN", "Verb Parsed");
+		posHashMap.put("VBP", "V Personal");
+		posHashMap.put("VBZ", "Verb Singular");
 	}
 	
 	public static String extractKeywords(String question) {
