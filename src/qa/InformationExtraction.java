@@ -18,14 +18,15 @@ public class InformationExtraction {
 		posHashMap.put("NNP", "Proper Noun");
 		posHashMap.put("JJ", "Adjective");
 		posHashMap.put("VB", "Verb");
+		posHashMap.put("FW", "Foreign Word");
 		posHashMap.put("JJR", "Compartive Adjective");
 		posHashMap.put("JJS", "Adjective Singular");
 		posHashMap.put("NNS", "Noun Plural");
 		posHashMap.put("NNPS", "Proper Noun");
-		posHashMap.put("VBD", "Verb D");
+		posHashMap.put("VBD", "Verb Past Tense");
 		posHashMap.put("VBG", "Present Participle");
 		posHashMap.put("VBN", "Verb Parsed");
-		posHashMap.put("VBP", "V Personal");
+		posHashMap.put("VBP", "Verb Personal");
 		posHashMap.put("VBZ", "Verb Singular");
 	}
 	
@@ -35,7 +36,7 @@ public class InformationExtraction {
 			
 		String taggedQues = Utility.Tagger.tagString(question);
 		String [] quesTags = taggedQues.split("_|\\s");
-		
+		System.out.println(taggedQues);
 		String start = "\"";
 		int startIndex = question.indexOf(start);
 		int lastIndex = question.lastIndexOf(start);		
