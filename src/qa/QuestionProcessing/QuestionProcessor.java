@@ -9,8 +9,8 @@ import java.util.Queue;
 
 import qa.AnswerType;
 import qa.IQuestion;
-import qa.InformationExtraction;
 import qa.QuestionType;
+import qa.Utility;
 
 
 /**
@@ -83,9 +83,11 @@ public class QuestionProcessor implements IQuestionProcessor {
 			}
 			
 			// Extract keywords
-			question.setKeywords(InformationExtraction.extractKeywords(question.getQuestion()));
+			question.setKeywords(Utility.extractKeywords(question.getQuestion()));
 			this.questionsQueue.add(question);
 			System.out.println(question.getqID()+":"+question.getQuestion()+":" + question.getQuestionType()+":"+question.getAnswerTypes()+":"+question.getKeywords());
-		}		
+		}
+		
+		Utility.IsQuestionProcessingDone = true;
 	}
 }

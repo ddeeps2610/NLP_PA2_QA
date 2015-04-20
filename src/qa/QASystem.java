@@ -27,8 +27,8 @@ public class QASystem implements IQASystem
 	private IQuestionProcessor questionProccessor;
 	private IPassageRetriever passageRetriever;
 	private IAnswerGenerator answerGenerator;
-	private String QUESTIONFILENAME= "qadata/test/questions.txt";
-	private String RELEVANTDOCSPATH= "topdocs/test/";
+	private String QUESTIONFILENAME= "qadata/dev/questions.txt";
+	private String RELEVANTDOCSPATH= "topdocs/dev/";
 	
 
 	/*********************** Getters and Setters ************************/
@@ -46,20 +46,20 @@ public class QASystem implements IQASystem
 	public void execute() 
 	{
 		this.questionProccessor.run();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		this.passageRetriever.run();
-		try {
-			Thread.sleep(70000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+//		try {
+//			Thread.sleep(70000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
 		this.answerGenerator.run();
 		
 	}

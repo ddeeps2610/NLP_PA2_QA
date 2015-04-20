@@ -22,6 +22,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import qa.IQuestion;
+import qa.Utility;
 
 
 /**
@@ -45,9 +46,10 @@ public class PassageRetriever implements IPassageRetriever {
 	@Override
 	public void run() {
 		
-		while(!this.questionsQueue.isEmpty()) {
+		while(!this.questionsQueue.isEmpty() || !Utility.IsQuestionProcessingDone) {
 		
 			IQuestion question = this.questionsQueue.poll();
+			if(question == null) continue;
 			
 			List<String> TopDocs = new LinkedList<String>();
 			TopDocs = PassageReader.splitDocuments(filename + question.getqID());
@@ -103,6 +105,7 @@ public class PassageRetriever implements IPassageRetriever {
 					System.out.println("Relevant Documents List is empty");
 			}
 		}
+		Utility.IsPassageRetrivalDone = true;
 	}
 	
 	private List<String> parseXMLDocument(Node node, List<String> passagesList ) {

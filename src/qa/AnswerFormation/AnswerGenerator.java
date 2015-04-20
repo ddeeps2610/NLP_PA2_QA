@@ -32,8 +32,10 @@ public class AnswerGenerator implements IAnswerGenerator {
 	@Override
 	public void run() {
 		
-		while(!processedQuestionsQueue.isEmpty()) {
+		while(!processedQuestionsQueue.isEmpty() || !Utility.IsPassageRetrivalDone) {
 			IQuestion question = processedQuestionsQueue.poll();
+			if(question == null) continue;
+			
 			HashSet<String> answers = new HashSet<String>();
 			for(String passage : question.getRelevantPassages()) {
 				String nerTaggedPassage = getNERTagging(passage);
