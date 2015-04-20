@@ -4,7 +4,9 @@
 package qa;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.NERClassifierCombiner;
@@ -136,5 +138,26 @@ public class Utility {
 	 */
 	public static String getPOSTagging(String sentence) {
 		return tagger.tagString(sentence);
+	}
+	
+	/**
+	 * 
+	 * @param passage
+	 * @return
+	 */
+	public static List<String> sentenceTokenizer(List<String> passage){
+
+		List<String> relevantSentences = new ArrayList<String>();
+		for(String string : passage)
+		{
+			//(){}\\[\\]\"\'
+			string = string.replaceAll("[(){}\\[\\]\"']", " ");
+			String[] passagesSplit = string.split("\\.|\\?|\\!");
+			for (int i = 0; i<passagesSplit.length;i++) {
+				if (!passagesSplit[i].trim().isEmpty())
+					relevantSentences.add(passagesSplit[i]);
+			}
+		}
+		return relevantSentences;
 	}
 }
