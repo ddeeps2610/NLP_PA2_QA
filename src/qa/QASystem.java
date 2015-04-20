@@ -3,7 +3,9 @@
  */
 package qa;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import qa.AnswerFormation.AnswerGenerator;
@@ -21,10 +23,12 @@ public class QASystem implements IQASystem
 	/*********************** State ************************/
 	private Queue<IQuestion> questionsQueue;
 	private Queue<IQuestion> processedQuestionsQueue;
+	private List<IQuestion> processedQuestions;
 	private IQuestionProcessor questionProccessor;
 	private IPassageRetriever passageRetriever;
 	private IAnswerGenerator answerGenerator;
 	private static String QUESTIONFILENAME= "qadata/test/questions.txt";
+	private static String RELEVANTDOCSPATH= "topdocs/test/";
 	
 
 	/*********************** Getters and Setters ************************/
@@ -32,8 +36,9 @@ public class QASystem implements IQASystem
 		this.questionsQueue = new LinkedList<IQuestion>();
 		this.processedQuestionsQueue = new LinkedList<IQuestion>();
 		this.questionProccessor = new QuestionProcessor(this.questionsQueue,this.QUESTIONFILENAME);
-		this.passageRetriever = new PassageRetriever(this.questionsQueue,this.processedQuestionsQueue);
-		this.answerGenerator = new AnswerGenerator(this.processedQuestionsQueue);
+		this.passageRetriever = new PassageRetriever(this.questionsQueue,this.processedQuestionsQueue,RELEVANTDOCSPATH+"top_docs.");
+		this.processedQuestions = new ArrayList<IQuestion>();
+		this.answerGenerator = new AnswerGenerator(this.processedQuestionsQueue, this.processedQuestions);
 	}
 	
 	/*********************** Business Logic ************************/

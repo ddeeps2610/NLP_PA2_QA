@@ -4,6 +4,7 @@
 package qa;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Deepak
@@ -94,6 +95,13 @@ public class Question implements IQuestion
 		this.relevantPassages.add(relevantPassage);
 	}
 
+	public void addAllRelevantPassages(List<String> relevantPassages ){
+		if(this.relevantPassages == null) {
+			this.relevantPassages = new LinkedList<String>();
+		}
+		this.relevantPassages.addAll(relevantPassages);
+	}
+	
 	public LinkedList<String> getAnswers() {
 		return answers;
 	}

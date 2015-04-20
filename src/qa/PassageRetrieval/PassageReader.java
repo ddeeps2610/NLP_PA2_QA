@@ -5,33 +5,65 @@ package qa.PassageRetrieval;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 
 public class PassageReader implements IPassageReader {
+	
+static List<String> splitDocuments(String filename) {
 
+	 List<String> TopDocs = new LinkedList<String>();
+	
+		BufferedReader br = null;
+		String XMLOutput = "";
+		try {
+			br = new BufferedReader(new FileReader (filename));
+			String CurrentLine = null;
+			while ((CurrentLine = br.readLine()) != null) {
+				if (!CurrentLine.contains("Qid")) {
+				//	System.out.println(CurrentLine);
+					XMLOutput = XMLOutput + " " +CurrentLine;
+				}
+				else {
+					//System.out.println(XMLOutput);
+					if (!XMLOutput.trim().isEmpty()) {
+						TopDocs.add(XMLOutput.trim());
+						XMLOutput = "";
+					}
+				}				
+			}
+			if (!XMLOutput.trim().isEmpty()) 
+				TopDocs.add(XMLOutput.trim());
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if (br != null)
+					br.close();
+				System.out.println("Number of documents fed : "+TopDocs.size());
+				
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return TopDocs;
+	}
+
+	
+	
+	
+	
+	
 	// List of all 50 Documents read from top_docs.n file
-	public static List<String> TopDocs = new LinkedList<String>();
+	/*public static List<String> TopDocs = new LinkedList<String>();
 	
 	public static String METHOD = 
 			"GET_HIGHEST_10_DOCS";
@@ -47,7 +79,7 @@ public class PassageReader implements IPassageReader {
 			while ((CurrentLine = br.readLine()) != null) {
 				if (!CurrentLine.contains("Qid")) {
 				//	System.out.println(CurrentLine);
-					XMLOutput += CurrentLine;
+					XMLOutput = XMLOutput + " " +CurrentLine;
 				}
 				else {
 					//System.out.println(XMLOutput);
@@ -105,9 +137,9 @@ public class PassageReader implements IPassageReader {
 	        		if (nodeName.equals("TEXT")) {
 		        		//System.out.println("Inside Text Splitting..");
 		        		String[] tempSplit = temp.split("\\s\\s|;");
-		        		/*for (int j = 0; j < tempSplit.length; j++) {
+		        		for (int j = 0; j < tempSplit.length; j++) {
 							System.out.println(tempSplit[j]);
-						} */
+						} 
 		        		List<String> splitList = Arrays.asList(tempSplit);
 		        		passagesList.addAll(splitList);
 	        		}
@@ -116,9 +148,9 @@ public class PassageReader implements IPassageReader {
 	        }
 	    }
 	       
-	 /*   for (int j = 0; j < passagesList.size(); j++) {
+	    for (int j = 0; j < passagesList.size(); j++) {
 			System.out.println(passagesList.get(j));
-		}  */ 
+		}   
 	    }
 	    return passagesList;
 	}
@@ -136,10 +168,10 @@ public class PassageReader implements IPassageReader {
 			Document doc = dBuilder.parse(input);
 			doc.getDocumentElement().normalize();
 			passagesList = parseXMLDocument(doc.getDocumentElement(), passagesList);
-			/*	System.out.println("Passage: "+passagesList.size());
+				System.out.println("Passage: "+passagesList.size());
 			for (int i = 0; i < passagesList.size(); i++) {
 				System.out.println(passagesList.get(i));
-			}   */
+			}   
 		
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
@@ -178,9 +210,9 @@ public class PassageReader implements IPassageReader {
 					candidatePassages = Lucene.LuceneComputation(passagesList,2,PostPassageRetrieval.keywordsString);
 					relevantPassages.addAll(candidatePassages);
 					if (!candidatePassages.isEmpty()) {
-						/*for (int k = 0; k < candidatePassages.size(); k++) {
+						for (int k = 0; k < candidatePassages.size(); k++) {
 						System.out.println(k+1 + ":\t"+candidatePassages.get(k));
-						} */
+						} 
 					}
 					else
 						System.out.println("CandidatePassagesList for Document "+i+" is empty.");	
@@ -207,10 +239,10 @@ switch (METHOD)
 case "GET_HIGHEST_10_DOCS": 
 	splitDocuments("C:/Users/Arpitha/Documents/NLP/PA2/pa2_data/pa2-release/topdocs/dev/top_docs.102");
 	if (!TopDocs.isEmpty()) {
-		/*for (int i = 1; i < TopDocs.size(); i++) {
+		for (int i = 1; i < TopDocs.size(); i++) {
 			System.out.println("__________DOCUMENT "+i+"_________");
 			System.out.println(TopDocs.get(i));					
-				} */
+				} 
 		List<String> candidateDocuments = new ArrayList<String>();
 		candidateDocuments = Lucene.LuceneComputation(TopDocs,10,keywordString);
 		System.out.println("**********RELEVANT DOCUMENTS**********");
@@ -233,7 +265,16 @@ case "GET_HIGHEST_10_DOCS":
 			if (!relevantSentences.isEmpty()) {
 				for (int k = 0; k < relevantSentences.size(); k++) {
 					System.out.println(k+1 + ":\t"+relevantSentences.get(k));
-				}			
+				}
+								
+				List<String> rankedSentences = new ArrayList<String>();
+				rankedSentences = Lucene.LuceneComputation(relevantSentences,relevantSentences.size(),PostPassageRetrieval.keywordsString);
+				System.out.println("**********RANKED SENTENCES**********");
+				if (!rankedSentences.isEmpty()) {
+					for (int k = 0; k < rankedSentences.size(); k++) {
+						System.out.println(k+1 + ":\t"+rankedSentences.get(k));
+					}			
+				}
 		}
 		}
 		else
@@ -246,7 +287,7 @@ default:
 		break;
 }
 			
-		}
+		}  */
 }
 		
 
