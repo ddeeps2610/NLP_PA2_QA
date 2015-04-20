@@ -20,13 +20,11 @@ import qa.Utility;
 public class QuestionProcessor implements IQuestionProcessor {
 	private Queue<IQuestion> inputQuestions;
 	private Queue<IQuestion> questionsQueue;
-	private String questionsFileName;
 	private IQuestionReader questionReader;
 	private HashMap<QuestionType,String> qaTypesMap;
 	
 	public QuestionProcessor(Queue<IQuestion> questionsQueue, String questionsFileName) {
 		this.questionsQueue = questionsQueue;
-		this.questionsFileName = questionsFileName;
 		this.questionReader = new QuestionReader(questionsFileName);
 		this.inputQuestions = this.questionReader.readQuestions();
 		//this.questionReader.classifyQuestions();
