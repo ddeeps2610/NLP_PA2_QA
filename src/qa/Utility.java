@@ -30,7 +30,7 @@ public class Utility {
 	/**
 	 * 
 	 */
-	public static MaxentTagger Tagger;
+	private static MaxentTagger tagger;
 	
 	/**
 	 * 
@@ -40,7 +40,7 @@ public class Utility {
 	/**
 	 * 
 	 */
-	public static AbstractSequenceClassifier<CoreLabel> NERClassifier;
+	private static AbstractSequenceClassifier<CoreLabel> nerClassifier;
 
 	/**
 	 * 
@@ -58,7 +58,7 @@ public class Utility {
 	static {
 		serializedNERClassifier = "External Lib/NER Classifiers/english.all.7class.distsim.crf.ser.gz";
 		try {
-			NERClassifier = new NERClassifierCombiner(serializedNERClassifier);
+			nerClassifier = new NERClassifierCombiner(serializedNERClassifier);
 		} catch (ClassCastException | IOException ex) {
 			System.err.println(ex.getMessage());
 		}			  	
@@ -68,7 +68,7 @@ public class Utility {
 	 * 
 	 */
 	static {
-		Tagger = new MaxentTagger("External Lib/taggers/english-left3words-distsim.tagger");
+		tagger = new MaxentTagger("External Lib/taggers/english-left3words-distsim.tagger");
 	}
 
 	/**
@@ -91,11 +91,16 @@ public class Utility {
 		posHashMap.put("VBZ", "Verb Singular");
 	}
 	
+	/**
+	 * 
+	 * @param question
+	 * @return
+	 */
 	public static String extractKeywords(String question) {
 		String keywordsString = "";
 		question = question.replaceAll(keywordsPattern, " ");
 			
-		String taggedQues = Utility.Tagger.tagString(question);
+		String taggedQues = tagger.tagString(question);
 		String [] quesTags = taggedQues.split("_|\\s");
 		String start = "\"";
 		int startIndex = question.indexOf(start);
@@ -114,5 +119,22 @@ public class Utility {
 		return keywordsString;
 	}
 
+
+	/**
+	 * 
+	 * @param sentence
+	 * @return
+	 */
+	public static String getNERTagging(String sentence) {
+		return nerClassifier.classifyToString(sentence);
+	}
 	
+	/**
+	 * 
+	 * @param sentence
+	 * @return
+	 */
+	public static String getPOSTagging(String sentence) {
+		return tagger.tagString(sentence);
+	}
 }

@@ -35,11 +35,10 @@ public class AnswerGenerator implements IAnswerGenerator {
 		while(!processedQuestionsQueue.isEmpty() || !Utility.IsPassageRetrivalDone) {
 			IQuestion question = processedQuestionsQueue.poll();
 			if(question == null) continue;
-			
 			HashSet<String> answers = new HashSet<String>();
 			for(String passage : question.getRelevantPassages()) {
-				String nerTaggedPassage = getNERTagging(passage);
-				String posTaggedPassage = getPOSTagging(passage);
+				String nerTaggedPassage = Utility.getNERTagging(passage);
+				String posTaggedPassage = Utility.getPOSTagging(passage);
 				List<String> output = getDataFromNEROutput(nerTaggedPassage, question.getAnswerTypes());
 				output.addAll(getDataFromNEROutput(posTaggedPassage, question.getAnswerTypes()));
 				// not to be added to final code
@@ -59,19 +58,6 @@ public class AnswerGenerator implements IAnswerGenerator {
 		}
 		AnswerWriter writer = new AnswerWriter("answer.txt");
 		writer.writeAnswers(processedQuestions);
-	}
-
-	/**
-	 * 
-	 * @param sentence
-	 * @return
-	 */
-	private String getNERTagging(String sentence) {
-		return Utility.NERClassifier.classifyToString(sentence);
-	}
-	
-	private String getPOSTagging(String sentence) {
-		return Utility.Tagger.tagString(sentence);
 	}
 	
 	/**
