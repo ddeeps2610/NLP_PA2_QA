@@ -3,6 +3,7 @@
  */
 package qa;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public interface IQuestion
 	public void setQuestion(String question);
 	public void addAnswerPattern(String answerPattern);
 	public void addAnswer(String answer);
+	public void addMultipleAnswers(Collection<String> collection);
 	public void addrelevantPassage(String relevantPassage);
 	public void addAllRelevantPassages(List<String> relevantPassages);
 	public void setqID(Integer qID);

@@ -3,6 +3,7 @@
  */
 package qa;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -111,6 +112,12 @@ public class Question implements IQuestion
 		if(this.answers== null)
 			this.answers= new LinkedList<String>();
 		this.answers.add(answer);
+	}
+	public void addMultipleAnswers(Collection<String> collection)
+	{
+		if(this.answers == null)
+			this.answers = new LinkedList<String>();
+		this.answers.addAll(collection);
 	}
 	
 	public String getKeywords() {
