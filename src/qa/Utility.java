@@ -7,11 +7,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 
 import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.NERClassifierCombiner;
 import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
+import edu.stanford.nlp.trees.Tree;
+import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
+import edu.stanford.nlp.util.CoreMap;
+
 
 /**
  * @author Ravi
@@ -43,6 +51,10 @@ public class Utility {
 	 * 
 	 */
 	private static AbstractSequenceClassifier<CoreLabel> nerClassifier;
+	private static StanfordCoreNLP pipeline;
+	
+	private static Tree tree=null ;
+	private static Properties props = new Properties();
 
 	/**
 	 * 
@@ -71,6 +83,11 @@ public class Utility {
 	 */
 	static {
 		tagger = new MaxentTagger("External Lib/taggers/english-left3words-distsim.tagger");
+	}
+	
+	static{
+		props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
+		pipeline = new StanfordCoreNLP(props);
 	}
 
 	/**
@@ -160,4 +177,58 @@ public class Utility {
 		}
 		return relevantSentences;
 	}
+	
+	
+	public static List<String> GetNounPhrases(String text)
+	{
+		text=text.replaceAll("[?.,]", "");
+	    Annotation document = new Annotation(text);
+	    pipeline.annotate(document);
+	    List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+	    
+	    for(CoreMap sentence: sentences){
+	    	tree = sentence.get(TreeAnnotation.class);	
+	    }
+	    List<Tree> phraseList=new ArrayList<Tree>();
+	    for (Tree subtree: tree)
+	    {
+	    	List<Tree> leaves = tree.getLeaves();
+	      if(subtree.value().equals("NP")||(subtree.value().equals("WHNP")))
+	      {
+	        phraseList.add(subtree);
+	        //System.out.println("subtree"+subtree);
+
+	      }
+	    }
+    	List<String> nounPhrase= new ArrayList<String>();
+
+	    for(Tree t: phraseList){
+	    	StringBuilder np=new StringBuilder(); 
+	    	String [] token=t.toString().split("\\s");
+	    	for(String s : token){
+	    		//System.out.println("string"+s);
+	    		s=s.toLowerCase().replace("who", "").replace("which", "").replace("how", "").replace("what", "").replace("when", "").replace("where", "").replace("how", "");
+	    		//System.out.println("s="+s);
+	    		if(!s.contains("("))
+	    		{
+	    			np.append(s);
+	    		}
+	    	}
+	    	nounPhrase.add(np.toString().replace(")"," ").trim());
+	    	}
+	    for(String s : nounPhrase){
+    		//System.out.println("noun phrase="+ s);
+	    }
+	   
+	    //finding head words
+	    	String val=nounPhrase.get(0);
+	    	if(!val.isEmpty()){
+			    System.out.println("head word="+ nounPhrase.get(0));
+	    	}else
+	    		System.out.println("head word="+nounPhrase.get(1));
+	    
+	      return nounPhrase;
+
+	}
+
 }
