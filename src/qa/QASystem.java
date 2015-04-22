@@ -46,20 +46,18 @@ public class QASystem implements IQASystem
 	public void execute() 
 	{
 		this.questionProccessor.run();
-//		try {
-//			Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		this.passageRetriever.run();
-//		try {
-//			Thread.sleep(70000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		this.answerGenerator.run();
 		
 	}

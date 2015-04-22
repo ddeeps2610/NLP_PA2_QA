@@ -36,60 +36,40 @@ public class AnswerGenerator implements IAnswerGenerator {
 			IQuestion question = processedQuestionsQueue.poll();
 			if(question == null) continue;
 			HashSet<String> answers = new HashSet<String>();
-			for(String passage : question.getRelevantPassages()) 
-			{
+			for(String passage : question.getRelevantPassages()) {
 				String nerTaggedPassage = Utility.getNERTagging(passage);
 				String posTaggedPassage = Utility.getPOSTagging(passage);
-				List<String> output = getDataFromNEROutput(nerTaggedPassage, question.getAnswerTypes());
-				output.addAll(getDataFromNEROutput(posTaggedPassage, question.getAnswerTypes()));
-				
-				/************************* Jugaad to select most relevant answers********************/
-				// Process the output to select few most relevant answers
-				for(String answer : output) 
-				{
-					
-					// Select the most relevant answer that is closer to the keywords in the passage - Can it be done? This need not be done.		
-					
-					// Ignore the outputs which are part of question, so, it is not an answer
-					if(question.getQuestion().toLowerCase().contains(answer.toLowerCase())) 
-						continue;
-					
-					// Ignore duplicates
-					if(answers.contains(answer))
-						continue;
-					
-					// Select answers that are superset of another answer - Ravi and Ravi Dugar - Select Ravi Dugar
-					for(String ans : answers)
-					{
-						// Remove the already added subsets and add the superset
-						if(answer.contains(ans))
-						{
-							answers.remove(ans);
-							answers.add(answer);
-						}
-					}
-					
-					// Add some answers before you start processing so that we have at least some answers.
-					if(answers.size() < 10)
-					{
-						answers.add(answer);
-						continue;
-					}
-					answers.add(answer);
-				}
-				// Add all answsers
-				question.addMultipleAnswers(answers);
-				
-				/***************************************** Jugaad ends ******************************/
-//				if(output.size() == 1) {
-//					question.addAnswer(output.get(0));
-//				} else {
-//					// do something
+				List<String> output = getDataFromOutput(nerTaggedPassage, question.getAnswerTypes());
+//				try{
+//					output.addAll(Utility.GetNounPhrases(passage, false));
+//				} catch (Exception ex) {
+//					System.out.println(ex.getMessage());
 //				}
+				output.addAll(getDataFromOutput(posTaggedPassage, question.getAnswerTypes()));
+				
+				for(String answer : output) {
+					if(!question.getQuestion().toLowerCase().contains(answer.toLowerCase()) && !answers.contains(answer)) {
+						answers.add(answer);
+						question.addAnswer(answer);
+					}
+				}
 			}
-			// Process all the answers once again amongst all answers 
 			
-			// Final Collection of QAs
+//			for(String answer : answers) {
+//				boolean flag = true;
+//				for(String answer1 : answers) {
+//					if(!answer.equals(answer1)) {
+//						if(answer1.toLowerCase().contains(answer.toLowerCase())) {
+//							flag = false;
+//							break;
+//						}
+//					}
+//				}
+//				if(flag) {
+//					question.addAnswer(answer);
+//				}
+//			}
+			
 			this.processedQuestions.add(question);
 		}
 		AnswerWriter writer = new AnswerWriter("answer.txt");
@@ -98,27 +78,24 @@ public class AnswerGenerator implements IAnswerGenerator {
 	
 	/**
 	 * 
-	 * @param nerOutput
+	 * @param output
 	 * @param tagName
 	 * @return
 	 */
-	private List<String> getDataFromNEROutput(String nerOutput, String tagName) {
+	private List<String> getDataFromOutput(String output, String tagName) {
 		List<String> answers = new ArrayList<String>();
 		StringBuilder temp = new StringBuilder();
 		
-		String[] nerOutputArray = nerOutput.split("[/_\\s]");
+		String[] outputArray = output.split("[/_\\s]");
 		String[] tags = tagName.split("\\|");
 		
 		for(String tag : tags) {
 			String[] tagsArray = tag.split(":");
-			for(int arrayIndex = 1; arrayIndex < nerOutputArray.length; arrayIndex+=2) {
-				if(nerOutputArray[arrayIndex].trim().equals(tagsArray[1].trim())) {
-					temp.append(nerOutputArray[arrayIndex - 1] + " ");				
-				} 
-				else 
-				{
-					if(!temp.toString().equals("")) 
-					{
+			for(int arrayIndex = 1; arrayIndex < outputArray.length; arrayIndex+=2) {
+				if(outputArray[arrayIndex].trim().equals(tagsArray[1].trim())) {
+					temp.append(outputArray[arrayIndex - 1] + " ");				
+				} else {
+					if(!temp.toString().equals("")) {
 						answers.add(temp.toString().trim());
 					}
 					temp = new StringBuilder();

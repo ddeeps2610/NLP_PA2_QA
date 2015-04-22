@@ -38,19 +38,19 @@ public class QuestionProcessor implements IQuestionProcessor {
 		//QuestionTypes: WHEN,WHERE,WHY,DESCRIBE,DEFINE,WHO,WHOM,WHAT,WHICH,NAME,HOW,OTHERS
 		
 		// Definite QA Match
-		this.qaTypesMap.put(QuestionType.WHERE, 	"NER:LOCATION");		
-		this.qaTypesMap.put(QuestionType.WHO, 		"NER:PERSON");
-		this.qaTypesMap.put(QuestionType.WHOM, 		"NER:PERSON");
+		this.qaTypesMap.put(QuestionType.WHERE, 	"NER:LOCATION|NER:ORGANIZATION");		
+		this.qaTypesMap.put(QuestionType.WHO, 		"NER:PERSON|NER:ORGANIZATION");
+		this.qaTypesMap.put(QuestionType.WHOM, 		"NER:PERSON|NER:ORGANIZATION");
 		
 		// Multiple possible Answer Types.
 		this.qaTypesMap.put(QuestionType.WHEN, 		"NER:DATE|NER:TIME");		
 		
 		// Need to handle for sub categories
-		this.qaTypesMap.put(QuestionType.WHAT, 		"NER:LOCATION|POS:NP|POS:NNP|POS:NN|POS:VB|NER:DEFINITION|NER:NUMBER");
-		this.qaTypesMap.put(QuestionType.WHICH, 	"NER:LOCATION|POS:NP|POS:NNP|POS:NN|POS:VB|NER:DEFINITION|NER:NUMBER");
-		this.qaTypesMap.put(QuestionType.NAME, 		"NER:LOCATION|POS:NP|POS:NNP|POS:NN|POS:VB|NER:DEFINITION|NER:NUMBER");
+		this.qaTypesMap.put(QuestionType.WHAT, 		"NER:LOCATION|POS:NP|POS:NNP|POS:NN|POS:NNS|POS:VB|NER:DEFINITION|NER:NUMBER");
+		this.qaTypesMap.put(QuestionType.WHICH, 	"NER:LOCATION|POS:NP|POS:NNP|POS:NN|POS:NNS|POS:VB|NER:DEFINITION|NER:NUMBER");
+		this.qaTypesMap.put(QuestionType.NAME, 		"NER:LOCATION|POS:NP|POS:NNP|POS:NN|POS:NNS|POS:VB|NER:DEFINITION|NER:NUMBER");
 		this.qaTypesMap.put(QuestionType.HOW_MANY, 	"NER:NUMBER");
-		this.qaTypesMap.put(QuestionType.HOW, 		"POS:NNP|NER:DEFINITION");
+		this.qaTypesMap.put(QuestionType.HOW, 		"POS:NNP|POS:NNPS|NER:DEFINITION");
 
 		// Non Standard Answer Types
 		this.qaTypesMap.put(QuestionType.WHY, 		"NER:REASON");

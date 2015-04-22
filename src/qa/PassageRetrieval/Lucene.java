@@ -23,57 +23,51 @@ import org.apache.lucene.store.RAMDirectory;
 
 public class Lucene {
 
-	public static List<String> LuceneComputation( List<String> passagesList, int noOfReturns, String question) {
-		//System.out.println("*********In Lucene Computation...");
+	public static List<String> luceneComputation( List<String> passagesList, int noOfReturns, String question) {
+	
 		List<String> retList = new ArrayList<String>();
 		try {
-		
-		//Lucene Analyser
-	    StandardAnalyzer analyzer = new StandardAnalyzer();
-	    
-	    // Creating the index
-	    Directory index = new RAMDirectory();
-
-	    IndexWriterConfig config = new IndexWriterConfig(analyzer);
-
-	    IndexWriter w;
-			w = new IndexWriter(index, config);
-		
-		for (String passage: passagesList) {
-//			System.out.println(passage);
-			addDocuments(w, passage);
-		}
-		w.close();
-
-		Query q = new QueryParser("description", analyzer).parse(question);
-
-
-		int hitsPerPage = noOfReturns;
-		IndexReader reader = DirectoryReader.open(index);
-		IndexSearcher searcher = new IndexSearcher(reader);
-		TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage);
-		searcher.search(q, collector);
-		ScoreDoc[] hits = collector.topDocs().scoreDocs;
-
-		for(int i=0;i<hits.length;++i) {
-			int docId = hits[i].doc;
-			Document d = searcher.doc(docId);
-			//System.out.println((i + 1) + ". " + d.get("description"));
-			retList.add(i,d.get("description"));
-		}
-
-		reader.close();
-		
-		} catch (IOException | ParseException e) {
 			
+			//Lucene Analyser
+		    StandardAnalyzer analyzer = new StandardAnalyzer();
+		    
+		    // Creating the index
+		    Directory index = new RAMDirectory();
+	
+		    IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);	
+		    IndexWriter indexWriter = new IndexWriter(index, indexWriterConfig);
+			
+			for (String passage: passagesList) {
+				addDocuments(indexWriter, passage);
+			}
+			indexWriter.close();
+	
+			Query q = new QueryParser("description", analyzer).parse(question);
+	
+	
+			int hitsPerPage = noOfReturns;
+			IndexReader reader = DirectoryReader.open(index);
+			IndexSearcher searcher = new IndexSearcher(reader);
+			TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage);
+			searcher.search(q, collector);
+			ScoreDoc[] hits = collector.topDocs().scoreDocs;
+	
+			for(int i=0;i<hits.length;++i) {
+				int docId = hits[i].doc;
+				Document d = searcher.doc(docId);
+				retList.add(i,d.get("description"));
+			}
+	
+			reader.close();
+		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		return retList;
 	};  
 	
-	public static void addDocuments(IndexWriter w, String description) throws IOException {
-		    Document doc = new Document();
-		    doc.add(new TextField("description", description, Field.Store.YES));
-		    w.addDocument(doc);
-		  }
+	public static void addDocuments(IndexWriter indexWriter, String description) throws IOException {
+	    Document doc = new Document();
+	    doc.add(new TextField("description", description, Field.Store.YES));
+	    indexWriter.addDocument(doc);
+	}
 }

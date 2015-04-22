@@ -4,17 +4,22 @@
 package qa;
 
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.NERClassifierCombiner;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.process.DocumentPreprocessor;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
@@ -86,8 +91,8 @@ public class Utility {
 	}
 	
 	static{
-		props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
-		pipeline = new StanfordCoreNLP(props);
+//		props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
+//		pipeline = new StanfordCoreNLP(props);
 	}
 
 	/**
@@ -158,77 +163,84 @@ public class Utility {
 	}
 	
 	/**
-	 * 
-	 * @param passage
+	 * 	
+	 * @param passages
 	 * @return
 	 */
-	public static List<String> sentenceTokenizer(List<String> passage){
-
-		List<String> relevantSentences = new ArrayList<String>();
-		for(String string : passage)
-		{
-			//(){}\\[\\]\"\'
-			string = string.replaceAll("[(){}\\[\\]\"']", " ");
-			String[] passagesSplit = string.split("\\.|\\?|\\!");
-			for (int i = 0; i<passagesSplit.length;i++) {
-				if (!passagesSplit[i].trim().isEmpty())
-					relevantSentences.add(passagesSplit[i]);
+	public static List<String> sentenceTokenizer(List<String> passages) {
+		List<String> retVal = new ArrayList<String>();
+		
+		for(String passage : passages) {
+			Reader reader = new StringReader(passage);
+			DocumentPreprocessor dp = new DocumentPreprocessor(reader);	
+			Iterator<List<HasWord>> it = dp.iterator();
+		
+			while (it.hasNext()) {
+			   StringBuilder sentenceSb = new StringBuilder();
+			   List<HasWord> sentence = it.next();
+			   
+			   for (HasWord token : sentence) {
+			      if(sentenceSb.length()>1) {
+			         sentenceSb.append(" ");
+			      }
+			      sentenceSb.append(token);
+			   }
+			   
+			   retVal.add(sentenceSb.toString());
 			}
 		}
-		return relevantSentences;
+		return retVal;
 	}
 	
-	
-	public static List<String> GetNounPhrases(String text)
+	/**
+	 * 
+	 * @param text
+	 * @param flag
+	 * @return
+	 */
+	public static List<String> getNounPhrases(String text, boolean flag)
 	{
-		text=text.replaceAll("[?.,]", "");
-	    Annotation document = new Annotation(text);
-	    pipeline.annotate(document);
+		if(flag) {
+			text = text.replaceAll("[?.,]", "");
+		}
+	    
+		Annotation document = new Annotation(text);
 	    List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+	    List<Tree> phraseList=new ArrayList<Tree>();
+	    List<String> nounPhrase= new ArrayList<String>();
+
+	    pipeline.annotate(document);
 	    
 	    for(CoreMap sentence: sentences){
 	    	tree = sentence.get(TreeAnnotation.class);	
 	    }
-	    List<Tree> phraseList=new ArrayList<Tree>();
-	    for (Tree subtree: tree)
-	    {
-	    	List<Tree> leaves = tree.getLeaves();
-	      if(subtree.value().equals("NP")||(subtree.value().equals("WHNP")))
-	      {
-	        phraseList.add(subtree);
-	        //System.out.println("subtree"+subtree);
-
-	      }
+	    
+	    for (Tree subtree: tree) {
+	    	if(subtree.value().equals("NP")||(subtree.value().equals("WHNP"))) {
+	    		phraseList.add(subtree);
+	    	}
 	    }
-    	List<String> nounPhrase= new ArrayList<String>();
-
-	    for(Tree t: phraseList){
-	    	StringBuilder np=new StringBuilder(); 
-	    	String [] token=t.toString().split("\\s");
-	    	for(String s : token){
-	    		//System.out.println("string"+s);
-	    		s=s.toLowerCase().replace("who", "").replace("which", "").replace("how", "").replace("what", "").replace("when", "").replace("where", "").replace("how", "");
-	    		//System.out.println("s="+s);
-	    		if(!s.contains("("))
-	    		{
-	    			np.append(s);
+    	
+	    for(Tree tree: phraseList) {
+	    	StringBuilder np = new StringBuilder(); 
+	    	String[] token = tree.toString().split("\\s");
+	    	for(String str : token) {
+	    		str = str.toLowerCase().replace("who", "").replace("which", "").replace("how", "").replace("what", "").replace("when", "").replace("where", "").replace("how", "");
+	    		if(!str.contains("(")) {
+	    			np.append(str);
 	    		}
 	    	}
 	    	nounPhrase.add(np.toString().replace(")"," ").trim());
-	    	}
-	    for(String s : nounPhrase){
-    		//System.out.println("noun phrase="+ s);
 	    }
 	   
 	    //finding head words
-	    	String val=nounPhrase.get(0);
-	    	if(!val.isEmpty()){
-			    System.out.println("head word="+ nounPhrase.get(0));
-	    	}else
-	    		System.out.println("head word="+nounPhrase.get(1));
-	    
-	      return nounPhrase;
+    	String value = nounPhrase.get(0);
+    	if(!value.isEmpty()) {
+		    System.out.println("head word = " + nounPhrase.get(0));
+    	} else {
+    		System.out.println("head word = " + nounPhrase.get(1));
+    	}
 
+    	return nounPhrase;
 	}
-
 }

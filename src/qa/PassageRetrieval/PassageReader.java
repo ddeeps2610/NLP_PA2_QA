@@ -13,49 +13,49 @@ import java.util.List;
 
 public class PassageReader implements IPassageReader {
 	
-	static List<String> splitDocuments(String filename) {
-		
+	public static List<String> splitDocuments(String filename) {
 
-		List<String> TopDocs = new LinkedList<String>();
+		List<String> topDocs = new LinkedList<String>();
 	
 		BufferedReader br = null;
-		String XMLOutput = "";
+		String xmlOutput = "";
 		try {
 			br = new BufferedReader(new FileReader (filename));
-			String CurrentLine = null;
-			while ((CurrentLine = br.readLine()) != null) {
-				if (!CurrentLine.contains("Qid")) {
+			String currentLine = null;
+			while ((currentLine = br.readLine()) != null) {
 				//	System.out.println(CurrentLine);
-					XMLOutput = XMLOutput + " " + fixXML(CurrentLine);
+				if (!currentLine.contains("Qid")) {
+					xmlOutput = xmlOutput + " " + fixXML(currentLine);
 				}
 				else {
-					//System.out.println(XMLOutput);
-					if (!XMLOutput.trim().isEmpty()) {
-						TopDocs.add(XMLOutput.trim());
-						XMLOutput = "";
+					if (!xmlOutput.trim().isEmpty()) {
+						topDocs.add(xmlOutput.trim());
+						xmlOutput = "";
 					}
 				}				
 			}
-			if (!XMLOutput.trim().isEmpty()) 
-				TopDocs.add(XMLOutput.trim());
+			if (!xmlOutput.trim().isEmpty()) 
+				topDocs.add(xmlOutput.trim());
 			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		finally {
+		} catch (IOException ex) {
+			System.err.println(ex.getMessage());
+		} finally {
 			try {
-				if (br != null)
+				if (br != null) {
 					br.close();
-				//System.out.println("Number of documents fed : "+TopDocs.size());
-				
+				}
 			} catch (IOException ex) {
-				ex.printStackTrace();
+				System.err.println(ex.getMessage());
 			}
 		}
-		return TopDocs;
+		return topDocs;
 	}
 
-	
+	/**
+	 * 
+	 * @param documentData
+	 * @return
+	 */
 	private static String fixXML(String documentData) {
 		int index = 0;
 		StringBuilder retVal = new StringBuilder();
@@ -87,11 +87,18 @@ public class PassageReader implements IPassageReader {
 				++index;
 			}
 		}
+		
+		String tempString = retVal.toString();
+		
+		if(tempString.contains("& ")) {
+			tempString = tempString.replaceAll("&\\s+", "&");
+		}
+		
+		for(String str : new String[]{",", "."}) {
+			tempString = tempString.replaceAll(str, " " + str);
+		}
 		return retVal.toString();
 	}
-	
-	
-	
 }
 		
 
