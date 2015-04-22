@@ -90,10 +90,6 @@ public class PassageReader implements IPassageReader {
 		
 		String tempString = retVal.toString();
 		
-		if(tempString.contains("& ")) {
-			tempString = tempString.replaceAll("&\\s+", "&");
-		}
-		
 		for(String str : new String[]{",", "."}) {
 			tempString = tempString.replaceAll(str, " " + str);
 		}
