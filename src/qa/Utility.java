@@ -191,7 +191,7 @@ public class Utility {
 		
 		for(String passage : passages) {
 			Reader reader = new StringReader(passage);
-			//passage = passage.replaceAll(tokenizePattern, "");
+		passage = passage.replaceAll(tokenizePattern, "");
 			DocumentPreprocessor dp = new DocumentPreprocessor(reader);	
 			Iterator<List<HasWord>> it = dp.iterator();
 		
@@ -223,7 +223,7 @@ public class Utility {
 		for(String passage : passages) {
 			StringBuilder sentence = new StringBuilder();
 			try {
-				PTBTokenizer<CoreLabel> ptbTokenizer = new PTBTokenizer<CoreLabel>(new StringReader(passage), new CoreLabelTokenFactory(), "tokenizeNLs=false,normalizeParentheses=false,normalizeOtherBrackets=false");
+				PTBTokenizer<CoreLabel> ptbTokenizer = new PTBTokenizer<CoreLabel>(new StringReader(passage), new CoreLabelTokenFactory(), "tokenizeNLs=true,ptb3Escaping=false,normalizeParentheses=false,normalizeOtherBrackets=false");
 				for(CoreLabel label; ptbTokenizer.hasNext();) {
 					label = ptbTokenizer.next();
 					sentence.append(label.toString() + " ");
@@ -314,4 +314,11 @@ public class Utility {
         System.out.println("lemmatized passage"+ lemmatizedPassage.toString());
         return lemmatizedPassage.toString();
     }
+	
+	/**
+	 * 
+	 */
+	public static void initialize() {
+		
+	}
 }

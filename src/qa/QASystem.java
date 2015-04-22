@@ -45,20 +45,15 @@ public class QASystem implements IQASystem
 	@Override
 	public void execute() 
 	{
-		this.questionProccessor.run();
 		try {
+			Utility.initialize();
+			(new Thread(this.questionProccessor)).start();
 			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		this.passageRetriever.run();
-		try {
+			(new Thread(this.passageRetriever)).start();
 			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+			(new Thread(this.answerGenerator)).start();
+		} catch (Exception ex) {
+			System.err.println(ex.getMessage());
 		}
-		
-		this.answerGenerator.run();
-		
 	}
 }

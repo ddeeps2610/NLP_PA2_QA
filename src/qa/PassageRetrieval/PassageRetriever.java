@@ -83,7 +83,7 @@ public class PassageRetriever implements IPassageRetriever {
 						
 						question.addAllRelevantPassages(rankedSentences);	
 						this.processedQuestionsQueue.add(question);
-						
+
 //						if (!rankedSentences.isEmpty()) {
 //							for (int k = 0; k < rankedSentences.size(); k++) {
 //								System.out.println(k+1 + ":\t"+rankedSentences.get(k));
