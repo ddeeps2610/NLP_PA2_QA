@@ -37,6 +37,7 @@ public class AnswerGenerator implements IAnswerGenerator {
 			if(question == null) continue;
 			HashSet<String> answers = new HashSet<String>();
 			for(String passage : question.getRelevantPassages()) {
+				//String lemmatizedPassage = Utility.lemmatize(passage);
 				String nerTaggedPassage = Utility.getNERTagging(passage);
 				String posTaggedPassage = Utility.getPOSTagging(passage);
 				List<String> output = getDataFromOutput(nerTaggedPassage, question.getAnswerTypes());

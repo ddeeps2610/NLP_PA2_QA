@@ -24,7 +24,8 @@ import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
 import edu.stanford.nlp.util.CoreMap;
-
+import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 
 /**
  * @author Ravi
@@ -91,8 +92,8 @@ public class Utility {
 	}
 	
 	static{
-//		props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
-//		pipeline = new StanfordCoreNLP(props);
+		props.put("annotators", "tokenize, ssplit, pos, lemma, parse");
+		pipeline = new StanfordCoreNLP(props);
 	}
 
 	/**
@@ -243,4 +244,28 @@ public class Utility {
 
     	return nounPhrase;
 	}
+
+
+	/**
+	 * 
+	 * @param paragraph
+	 * @return
+	 */
+	public static String lemmatize(String paragraph)
+    {
+        List<String> lemmas = new ArrayList<String>();
+        StringBuilder lemmatizedPassage=new StringBuilder();
+        Annotation document = new Annotation(paragraph);
+        pipeline.annotate(document);
+        
+        List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+        for(CoreMap sentence: sentences) {
+            for (CoreLabel token: sentence.get(TokensAnnotation.class)) {
+                lemmas.add(token.get(LemmaAnnotation.class));
+                lemmatizedPassage.append(token.getString(LemmaAnnotation.class)+" ");
+            }
+        }
+        System.out.println("lemmatized passage"+ lemmatizedPassage.toString());
+        return lemmatizedPassage.toString();
+    }
 }

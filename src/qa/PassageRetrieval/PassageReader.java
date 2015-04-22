@@ -90,10 +90,15 @@ public class PassageReader implements IPassageReader {
 		
 		String tempString = retVal.toString();
 		
-		for(String str : new String[]{",", "."}) {
+		if(tempString.contains("& ")) {
+			tempString = tempString.replaceAll("& ", "&amp;");
+		}
+		
+		String[] regex = {",", "!"};
+		for(String str : regex) {
 			tempString = tempString.replaceAll(str, " " + str);
 		}
-		return retVal.toString();
+		return tempString;
 	}
 }
 		
