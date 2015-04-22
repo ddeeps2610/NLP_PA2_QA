@@ -270,7 +270,7 @@ public class Utility {
 	    	String[] token = tree.toString().split("\\s");
 	    	for(String str : token) {
 	    		if(!flag) {
-	    			str = str.toLowerCase().replace("who", "").replace("which", "").replace("how", "").replace("what", "").replace("when", "").replace("where", "").replace("how", "");	    		
+	    			str = str.toLowerCase().replace("who\\s", "").replace("which\\s", "").replace("how\\s", "").replace("what\\s", "").replace("when\\s", "").replace("where\\s", "").replace("how\\s", "");	    		
 	    		}
 	    		
 	    		if(!str.contains("(")) {
@@ -317,8 +317,66 @@ public class Utility {
 	
 	/**
 	 * 
+	 * @param question
+	 * @return
+	 */
+	public static String getQuestionStructure(String question) {
+		StringBuilder questionStructs = new StringBuilder();
+		
+		int i = 0;
+		for(String word: Utility.getPOSTagging(question).split(" ")) {
+			//How_WRB many_JJ
+			//How_WRB much_RB
+			if(word.contains("WP") ||word.contains("WRB") || word.contains("WDT"))// ||word.contains("NN") && !word.contains("NNS") && !word.contains("NNP"))
+				//questionStructure.add(word.split("_")[0]);//.split("|")[0]);
+				questionStructs.append(word.split("_")[0]+" ");
+			if(word.contains("NN") && !word.contains("NNS") && !word.contains("NNP")) {
+				i++;
+				questionStructs.append(word.split("_")[0]+" ");
+			}
+			if(i==1)
+				break;
+		}
+		
+		return questionStructs.toString().trim();
+	}
+
+	
+	/**
+	 * 
 	 */
 	public static void initialize() {
 		
 	}
+	
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String args[]) {
+		System.out.println("**************************");
+		String question1 = "Which is the tallest building?";
+		System.out.println(question1);
+		String posTaggedQuestion = Utility.getPOSTagging(question1);
+		String nerTaggedQuestion = Utility.getNERTagging(question1);
+		List<String> headWords = Utility.getNounPhrases(question1,true);
+		String keywords = Utility.extractKeywords(question1);
+		String quesStru = Utility.getQuestionStructure(question1);
+		
+		
+		System.out.println("POS TAGS:   " + posTaggedQuestion);
+		System.out.println("NER TAGS:   " + nerTaggedQuestion);
+		System.out.println("Head words: " + headWords);
+		System.out.println("Keywords:   " + keywords);
+		System.out.println("Que Stru:   " + quesStru);
+		
+		for(String keyword : keywords.split(" ")) {
+			question1 = question1.replace(keyword, "");
+		}
+		
+		question1 = question1.replaceAll("the", "");
+		question1 = question1.replace("is", "");
+		question1 = question1.replace("of", "");
+		System.out.println(question1);
+	}	
 }

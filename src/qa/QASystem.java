@@ -27,16 +27,17 @@ public class QASystem implements IQASystem
 	private IQuestionProcessor questionProccessor;
 	private IPassageRetriever passageRetriever;
 	private IAnswerGenerator answerGenerator;
-	private String QUESTIONFILENAME= "qadata/dev/questions.txt";
-	private String RELEVANTDOCSPATH= "topdocs/dev/";
+	private String testQuestionFilePath = "qadata/test/questions.txt";
+	private String trainingQuestionFilePath = "qadata/dev/questions.txt";
+	private String relevantDocsPath = "topdocs/test/";
 	
 
 	/*********************** Getters and Setters ************************/
 	public QASystem() {
 		this.questionsQueue = new LinkedList<IQuestion>();
 		this.processedQuestionsQueue = new LinkedList<IQuestion>();
-		this.questionProccessor = new QuestionProcessor(this.questionsQueue, QUESTIONFILENAME);
-		this.passageRetriever = new PassageRetriever(this.questionsQueue,this.processedQuestionsQueue,RELEVANTDOCSPATH+"top_docs.");
+		this.questionProccessor = new QuestionProcessor(this.questionsQueue, this.trainingQuestionFilePath, this.testQuestionFilePath);
+		this.passageRetriever = new PassageRetriever(this.questionsQueue, this.processedQuestionsQueue, this.relevantDocsPath+"top_docs.");
 		this.processedQuestions = new ArrayList<IQuestion>();
 		this.answerGenerator = new AnswerGenerator(this.processedQuestionsQueue, this.processedQuestions);
 	}
@@ -45,15 +46,19 @@ public class QASystem implements IQASystem
 	@Override
 	public void execute() 
 	{
-		try {
-			Utility.initialize();
-			(new Thread(this.questionProccessor)).start();
-			Thread.sleep(5000);
-			(new Thread(this.passageRetriever)).start();
-			Thread.sleep(5000);
-			(new Thread(this.answerGenerator)).start();
-		} catch (Exception ex) {
-			System.err.println(ex.getMessage());
-		}
+		Utility.initialize();
+		this.questionProccessor.run();
+		this.passageRetriever.run();
+		this.answerGenerator.run();
+//		try {
+//			Utility.initialize();
+//			(new Thread(this.questionProccessor)).start();
+//			Thread.sleep(5000);
+//			(new Thread(this.passageRetriever)).start();
+//			Thread.sleep(5000);
+//			(new Thread(this.answerGenerator)).start();
+//		} catch (Exception ex) {
+//			System.err.println(ex.getMessage());
+//		}
 	}
 }

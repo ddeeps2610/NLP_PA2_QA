@@ -104,6 +104,7 @@ public class AnswerGenerator implements IAnswerGenerator {
 		String[] tags = tagName.split("\\|");
 		
 		for(String tag : tags) {
+			if(tag == null || tag.equals("")) continue;
 			String[] tagsArray = tag.split(":");
 			for(int arrayIndex = 1; arrayIndex < outputArray.length; arrayIndex+=2) {
 				if(outputArray[arrayIndex].trim().equals(tagsArray[1].trim())) {

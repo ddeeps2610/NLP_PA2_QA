@@ -1,285 +1,380 @@
 Number: 0
 What hockey team did Wayne Gretzky play for?
+ANS|POS:NP|
 
 Number: 1
 What flower did Vincent Van Gogh paint?
+ANS|POS:NN|POS:NNS|POS:NN|POS:NNS|POS:NNP|POS:NNPS
 
 Number: 2
 What is anise?
+ANS|POS:NP
 
 Number: 3
 At Christmas time, what is the traditional thing to do under the mistletoe?
+ANS|POS:NP|POS:VBZ|POS:VBD|POS:VBG|POS:VBN|POS:VBP|POS:VB
 
 Number: 5
 What kind of a sports team is the Wisconsin Badgers?
+ANS|POS:NN|POS:NNS|POS:NNP|POS:NNPS
 
 Number: 7
 What is pandoro?
+ANS|POS:NP
 
 Number: 8
 What is measured in curies?
+ANS|POS:NN
 
 Number: 9
 What is the name of the Michelangelo painting that shows two hands with fingers touching?
+ANS|POS:NP
 
 Number: 10
 What hair color can I use to just cover a little gray?
+ANS|POS:NP|POS:NN|POS:NNS|POS:NNP|POS:NNPS
 
 Number: 11
 What are geckos?
+ANS|POS:NP
 
 Number: 12
 Who owns CNN?
+ANS|NER:PERSON|NER:ORGANIZATION
 
 Number: 13
 Can you give me the name of a clock maker in London, England?
+ANS|NER:PERSON
 
 Number: 14
 Where did guinea pigs originate?
+ANS|NER:LOCATION
 
 Number: 15
 What is thalassemia?
+ANS|POS:NP
 
 Number: 17
 How many home runs did Lou Gehrig have during his career?
+ANS|NER:NUMBER
 
 Number: 18
 Where did Woodstock take place?
+ANS|NER:LOCATION|
 
 Number: 19
 What nationality was Jackson Pollock?
+ANS|POS:NP|POS:NN|POS:NNS|POS:NNP|POS:NNPS
 
 Number: 20
 Tell me what city the Kentucky Horse Park is near?
+ANS|NER:LOCATION
 
 Number: 21
 What famous model was married to Billy Joel?
+ANS|NER:PERSON
 
 Number: 22
 What is the population of Ohio?
+ANS|NER:NUMBER
 
 Number: 24
 What continent is Bolivia on?
+ANS|NER:LOCATION
 
 Number: 26
 Where are the U.S. headquarters for Procter & Gamble?
+ANS|NER:LOCATION
 
 Number: 28
 What is the most common kind of skin cancer in the U.S.?
+ANS|POS:NP
 
 Number: 29
 When was the Hoover Dam constructed?
+ANS|POS:DATE|POS:TIME
 
 Number: 30
 Who coined the term "cyberspace" in his novel "Neuromancer"?
+ANS|NER:PERSON
 
 Number: 31
 What does CPR stand for?
+ANS|POS:NP
 
 Number: 34
 What is the chemical formula/name for napalm?
+ANS|POS:NP
 
 Number: 35
 What does CNN stand for?
+ANS|POS:NP
 
 Number: 36
 Who was Samuel Johnsons's friend and biographer?
+ANS|NER:PERSON
 
 Number: 37
 Who provides telephone service in Orange County, California?
+ANS|NER:ORGANIZATION
 
 Number: 39
 What is a stratocaster?
+ANS|POS:NP
 
 Number: 40
 Who is Henry Butler?
+ANS|POS:NP
 
 Number: 41
 Who is the founder of the Wal-Mart stores?
+ANS|POS:PERSON
 
 Number: 43
 What's the name of the song Will Smith sings about parents?
+ANS|POS:NP
 
 Number: 45
 What does Nicholas Cage do for a living?
+ANS|POS:NP
 
 Number: 46
 Name one of the Seven Wonders of the Ancient World.
+ANS|POS:NP
 
 Number: 47
 What's the name of Pittsburgh's baseball team?
+ANS|POS:NP
 
 Number: 48
 For what disease is the drug Sinemet used as a treatment?
+ANS|POS:NP
 
 Number: 49
 Where did Wicca first develop?
+ANS|NER:LOCATION
 
 Number: 50
 What is the mascot for Notre Dame University?
+ANS|POS:NP|POS:NN|POS:NNS|POS:NNP|POS:NNPS
 
 Number: 51
 How did Bob Marley die?
+ANS|POS:NP
 
 Number: 52
 Who was the author of the book about computer hackers called "The Cuckoo's Egg: Tracking a Spy Through the Maze of Computer Espionage"?
+ANS|NER:PERSON
 
 Number: 53
 Who reports the weather on the "Good Morning America" television show?
+ANS|NER:PERSON
 
 Number: 54
 What is the name of the Jewish alphabet?
+ANS|POS:NNP|POS:NNPS
 
 Number: 55
 What are the Poconos?
+ANS|POS:NP
 
 Number: 56
 What Cruise Line does Kathie Lee Gifford advertise for?
+ANS|POS:NP
 
 Number: 57
 Where are diamonds mined?
+ANS|NER:LOCATION
 
 Number: 58
 What store does Martha Stewart advertise for?
+ANS|POS:NP
 
 Number: 62
 Who created "The Muppets"?
+ANS|NER:PERSON
 
 Number: 63
 What does hazmat stand for?
+ANS|POS:NP
 
 Number: 65
 How many months does a normal human pregnancy last?
+ANS|NER:NUMBER|POS:CD
 
 Number: 66
 What's the most famous tourist attraction in Rome?
+ANS|POS:NP
 
 Number: 68
 What cereal goes "snap, crackle, pop"?
+ANS|POS:NP
 
 Number: 69
 Who wrote the song, "Silent Night"?
+ANS|NER:PERSON
 
 Number: 70
 What year did Hitler die?
+ANS|NER:DATE|NER:TIME|POS:NUMBER|POS:CD
 
 Number: 72
 Who was Darth Vader's son?
+ANS|POS:NNP|POS:NNPS
 
 Number: 73
 Who portrayed Jake in the television show, "Jake and the Fatman"?
+ANS|NER:PERSON
 
 Number: 74
 Where is Amsterdam?
+ANS|NER:LOCATION
 
 Number: 75
 Name a civil war battlefield.
+ANS|NER:LOCATION
 
 Number: 76
 What is Black Hills, South Dakota most famous for?
+ANS|POS:NP
 
 Number: 77
 When was the first Barbie produced?
+ANS|NER:DATE|NER:TIME|POS:CD
 
 Number: 78
 What caused the Lynmouth floods?
+ANS|POS:NP
 
 Number: 79
 What is the zip code for Fremont, CA?
+ANS|NER:NUMBER|POS:CD
 
 Number: 80
 Name a Gaelic language.
+ANS|POS:NP
 
 Number: 81
 Who is Terrence Malick?
+ANS|POS:NP
 
 Number: 82
 What's the name of a golf course in Myrtle Beach?
+ANS|POS:NP
 
 Number: 83
 When was Beethoven born?
+ANS|NER:DATE|NER:TIME|POS:CD
 
 Number: 84
 What's the name of the actress who starred in the movie, "Silence of the Lambs"?
+ANS|POS:NNP|POS:NNPS|POS:NP
 
 Number: 86
 What's another name for aspartame?
+ANS|POS:NNP|POS:NNPS|POS:NP
 
 Number: 87
 What state is Niagra Falls located in?
+ANS|NER:LOCATION
 
 Number: 88
 Where is Venezuela?
+ANS|NER:LOCATION
 
 Number: 89
 What is the real name of the singer, Madonna?
+ANS|POS:NNP|POS:NNPS|POS:NP
 
 Number: 90
 What is Dick Clark's birthday?
+ANS|POS:NP
 
 Number: 91
 Name an American made motorcycle.
+ANS|POS:NP
 
 Number: 92
 What was the name of the sitcom that Alyssa Milano starred in with Tony Danza?
+ANS|POS:NP
 
 Number: 93
 Name a female figure skater.
+ANS|POS:NNP|POS:NNPS|POS:NP
 
 Number: 94
 What is the name of the vaccine for chicken pox?
+ANS|POS:NNP|POS:NNPS|POS:NP
 
 Number: 95
 What is the name of the Lion King's son in the movie, "The Lion King"?
+ANS|NER:PERSON|POS:NNP|POS:NNPS|POS:NP
 
 Number: 99
 When was the NFL established?
+ANS|NER:DATE|NER:TIME|POS:CD
 
 Number: 100
 Who was Jane Goodall?
+ANS|POS:NP
 
 Number: 101
 What university was Woodrow Wilson President of?
+ANS|NER:ORGANIZATION||POS:NP
 
 Number: 102
 What province is Edmonton located in?
+ANS|NER:LOCATION
 
 Number: 103
 What soft drink contains the largest amount of caffeine?
+ANS|POS:NP
 
 Number: 104
 When did the California lottery begin?
+ANS|NER:DATE|NER:TIME|POS:CD
 
 Number: 105
 What are pomegranates?
+ANS|POS:NP
 
 Number: 106
 Who is the monarch of the United Kingdom?
+ANS|NER:PERSON|POS:NP
 
 Number: 108
 Who shot Billy the Kid?
+ANS|NER:PERSON
 
 Number: 109
 Who wrote the song, "Boys of Summer"?
+ANS|NER:PERSON
 
 Number: 111
 Who won the rugby world cup in 1987?
+ANS|POS:NNP|POS:NNPS
 
 Number: 112
 When was the movie, Caligula, made?
+ANS|NER:DATE|NER:TIME|POS:CD
 
 Number: 113
 Name a novel written by John Steinbeck.
+ANS|POS:NP
 
 Number: 114
 Who wrote the book, "The Grinch Who Stole Christmas"?
+ANS|NER:PERSON
 
 Number: 115
 What is the name of the company that manufactures the "American Girl" doll collection?
+ANS|NER:ORGANIZATION
 
 Number: 116
 When was the bar-code invented?
+ANS|NER:DATE|NER:TIME|POS:CD
 
 Number: 117
 What is the airport code for Los Angeles International?
+ANS|POS:NP
 

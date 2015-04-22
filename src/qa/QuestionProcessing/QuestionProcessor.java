@@ -22,10 +22,13 @@ public class QuestionProcessor implements IQuestionProcessor {
 	private Queue<IQuestion> questionsQueue;
 	private IQuestionReader questionReader;
 	private HashMap<QuestionType,String> qaTypesMap;
+	private HashMap<String, String> trainedMap;
 	
-	public QuestionProcessor(Queue<IQuestion> questionsQueue, String questionsFileName) {
+	public QuestionProcessor(Queue<IQuestion> questionsQueue, String trainingQuestionFile, String testQuestionFile) {
 		this.questionsQueue = questionsQueue;
-		this.questionReader = new QuestionReader(questionsFileName);
+		this.trainQuestionProcessor(trainingQuestionFile);
+		
+		this.questionReader = new QuestionReader(testQuestionFile);
 		this.inputQuestions = this.questionReader.readQuestions();
 		//this.questionReader.classifyQuestions();
 		this.qaTypesMap = new HashMap<QuestionType, String>();
@@ -39,7 +42,7 @@ public class QuestionProcessor implements IQuestionProcessor {
 		
 		// Definite QA Match
 		this.qaTypesMap.put(QuestionType.WHERE, 	"NER:LOCATION|NER:ORGANIZATION");		
-		this.qaTypesMap.put(QuestionType.WHO, 		"NER:PERSON|NER:ORGANIZATION");
+		this.qaTypesMap.put(QuestionType.WHO, 		"NER:PERSON|NER:ORGANIZATION|POS:NP");
 		this.qaTypesMap.put(QuestionType.WHOM, 		"NER:PERSON|NER:ORGANIZATION");
 		
 		// Multiple possible Answer Types.
@@ -57,29 +60,64 @@ public class QuestionProcessor implements IQuestionProcessor {
 		this.qaTypesMap.put(QuestionType.DESCRIBE,	"NER:DESCRIPTION");
 		this.qaTypesMap.put(QuestionType.DEFINE, 	"NER:DEFINITION");
 	}
+	
+	public void trainQuestionProcessor(String fileName)
+	{
+		System.out.println("Training the Question Processor based on the developer Questions Set.");
+		this.trainedMap = QuestionReader.trainQuestionTypes(fileName);
+		int i = 0;
+		for(Entry<String,String> entry : trainedMap.entrySet())
+		{
+			System.out.println(i++ + "\t" + entry.getKey() +  "\t" + entry.getValue());
+		}
+	}
 
 	@Override
 	public void run() {
 		for(IQuestion question : this.inputQuestions)
 		{
-			for(Entry<QuestionType, String> entry:this.qaTypesMap.entrySet())
+			// Check if the question belongs to any question structure.
+			String questionStructure = Utility.getQuestionStructure(question.getQuestion());
+			if((this.trainedMap != null) && (this.trainedMap.containsKey(questionStructure)))
 			{
-				// Identify the question and answer types
-				if(question.getQuestion().toUpperCase().contains(entry.getKey().toString()))
+				if((this.trainedMap.get(questionStructure) != null) && (!this.trainedMap.get(questionStructure).isEmpty()))
 				{
-					question.setQuestionType(entry.getKey());
-					//question.addAnswerType(entry.getValue());
-					question.setAnswerTypes(entry.getValue());
-					break;
+					for(Entry<QuestionType, String> entry:this.qaTypesMap.entrySet())
+					{
+						// Identify the question and answer types
+						if(question.getQuestion().toUpperCase().contains(entry.getKey().toString()))
+						{
+							question.setQuestionType(entry.getKey());
+							break;
+						}
+					}
+					if(question.getQuestion() == null)
+						question.setQuestionType(QuestionType.OTHERS);
+					question.setAnswerTypes(this.trainedMap.get(questionStructure));
 				}
-				
-				// Default Case if nothing works
-				question.setQuestionType(QuestionType.OTHERS);
-				//question.addAnswerType(AnswerType.NONE);
-				question.setAnswerTypes(AnswerType.NONE.toString());
-				
 			}
 			
+			
+			// Else, check for standard question types
+			else {
+				for(Entry<QuestionType, String> entry:this.qaTypesMap.entrySet())
+				{
+					// Identify the question and answer types
+					if(question.getQuestion().toUpperCase().contains(entry.getKey().toString()))
+					{
+						question.setQuestionType(entry.getKey());
+						//question.addAnswerType(entry.getValue());
+						question.setAnswerTypes(entry.getValue());
+						break;
+					}
+					
+					// Default Case if nothing works
+					question.setQuestionType(QuestionType.OTHERS);
+					//question.addAnswerType(AnswerType.NONE);
+					question.setAnswerTypes(AnswerType.NONE.toString());
+					
+				}
+			}
 			// Extract keywords
 			question.setKeywords(Utility.extractKeywords(question.getQuestion()));
 			this.questionsQueue.add(question);
