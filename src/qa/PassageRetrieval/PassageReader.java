@@ -94,10 +94,10 @@ public class PassageReader implements IPassageReader {
 			tempString = tempString.replaceAll("& ", "&amp;");
 		}
 		
-		String[] regex = {",", "!"};
-		for(String str : regex) {
-			tempString = tempString.replaceAll(str, " " + str);
-		}
+//		String[] regex = {",", "!"};
+//		for(String str : regex) {
+//			tempString = tempString.replaceAll(str, " " + str);
+//		}
 		return tempString;
 	}
 }

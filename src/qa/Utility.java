@@ -19,7 +19,9 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.process.CoreLabelTokenFactory;
 import edu.stanford.nlp.process.DocumentPreprocessor;
+import edu.stanford.nlp.process.PTBTokenizer;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
@@ -57,15 +59,31 @@ public class Utility {
 	 * 
 	 */
 	private static AbstractSequenceClassifier<CoreLabel> nerClassifier;
+
+	/**
+	 * 
+	 */
 	private static StanfordCoreNLP pipeline;
 	
-	private static Tree tree=null ;
+	/**
+	 * 
+	 */
+	private static Tree tree = null ;
+	
+	/**
+	 * 
+	 */
 	private static Properties props = new Properties();
 
 	/**
 	 * 
 	 */
-	private static String keywordsPattern = "[?(){}\\[\\]\\/]" ; 
+	private static String keywordsPattern = "[?(){}\\[\\]\\/]";
+	
+	/**
+	 * 
+	 */
+	private static String tokenizePattern = "[(){}\\[\\]]";
 	
 	/**
 	 * 
@@ -168,11 +186,12 @@ public class Utility {
 	 * @param passages
 	 * @return
 	 */
-	public static List<String> sentenceTokenizer(List<String> passages) {
+	public static List<String> documentPreprocessorTokenizer(List<String> passages) {
 		List<String> retVal = new ArrayList<String>();
 		
 		for(String passage : passages) {
 			Reader reader = new StringReader(passage);
+			//passage = passage.replaceAll(tokenizePattern, "");
 			DocumentPreprocessor dp = new DocumentPreprocessor(reader);	
 			Iterator<List<HasWord>> it = dp.iterator();
 		
@@ -181,7 +200,7 @@ public class Utility {
 			   List<HasWord> sentence = it.next();
 			   
 			   for (HasWord token : sentence) {
-			      if(sentenceSb.length()>1) {
+			      if(sentenceSb.length() > 1) {
 			         sentenceSb.append(" ");
 			      }
 			      sentenceSb.append(token);
@@ -190,6 +209,31 @@ public class Utility {
 			   retVal.add(sentenceSb.toString());
 			}
 		}
+		return retVal;
+	}
+	
+	/**
+	 * 
+	 * @param passages
+	 * @return
+	 */
+	public static List<String> ptbTokenizer(List<String> passages) {
+		List<String> retVal = new ArrayList<String>();
+		
+		for(String passage : passages) {
+			StringBuilder sentence = new StringBuilder();
+			try {
+				PTBTokenizer<CoreLabel> ptbTokenizer = new PTBTokenizer<CoreLabel>(new StringReader(passage), new CoreLabelTokenFactory(), "tokenizeNLs=false,normalizeParentheses=false,normalizeOtherBrackets=false");
+				for(CoreLabel label; ptbTokenizer.hasNext();) {
+					label = ptbTokenizer.next();
+					sentence.append(label.toString() + " ");
+				}
+			} catch (Exception ex) {
+				System.err.println(ex.getMessage());
+			}
+			retVal.add(sentence.toString().trim());
+		}
+		
 		return retVal;
 	}
 	
@@ -205,12 +249,11 @@ public class Utility {
 			text = text.replaceAll("[?.,]", "");
 		}
 	    
+	    List<Tree> phraseList = new ArrayList<Tree>();
+	    List<String> nounPhrase = new ArrayList<String>();
 		Annotation document = new Annotation(text);
-	    List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-	    List<Tree> phraseList=new ArrayList<Tree>();
-	    List<String> nounPhrase= new ArrayList<String>();
-
 	    pipeline.annotate(document);
+	    List<CoreMap> sentences = document.get(SentencesAnnotation.class);
 	    
 	    for(CoreMap sentence: sentences){
 	    	tree = sentence.get(TreeAnnotation.class);	
@@ -226,7 +269,10 @@ public class Utility {
 	    	StringBuilder np = new StringBuilder(); 
 	    	String[] token = tree.toString().split("\\s");
 	    	for(String str : token) {
-	    		str = str.toLowerCase().replace("who", "").replace("which", "").replace("how", "").replace("what", "").replace("when", "").replace("where", "").replace("how", "");
+	    		if(!flag) {
+	    			str = str.toLowerCase().replace("who", "").replace("which", "").replace("how", "").replace("what", "").replace("when", "").replace("where", "").replace("how", "");	    		
+	    		}
+	    		
 	    		if(!str.contains("(")) {
 	    			np.append(str);
 	    		}

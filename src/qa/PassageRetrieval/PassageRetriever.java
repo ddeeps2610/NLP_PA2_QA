@@ -69,7 +69,7 @@ public class PassageRetriever implements IPassageRetriever {
 //						}					
 //					}
 					
-					List<String> relevantSentences = Utility.sentenceTokenizer(relevantPassages);
+					List<String> relevantSentences = Utility.documentPreprocessorTokenizer(relevantPassages);
 					
 //					System.out.println("**********RELEVANT SENTENCES**********");
 					if (!relevantSentences.isEmpty()) {

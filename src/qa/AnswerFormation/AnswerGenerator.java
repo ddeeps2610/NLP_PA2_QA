@@ -37,16 +37,29 @@ public class AnswerGenerator implements IAnswerGenerator {
 			if(question == null) continue;
 			HashSet<String> answers = new HashSet<String>();
 			for(String passage : question.getRelevantPassages()) {
-				//String lemmatizedPassage = Utility.lemmatize(passage);
+				List<String> output = new ArrayList<String>(); 
 				String nerTaggedPassage = Utility.getNERTagging(passage);
 				String posTaggedPassage = Utility.getPOSTagging(passage);
-				List<String> output = getDataFromOutput(nerTaggedPassage, question.getAnswerTypes());
-//				try{
-//					output.addAll(Utility.GetNounPhrases(passage, false));
-//				} catch (Exception ex) {
-//					System.out.println(ex.getMessage());
-//				}
+				output.addAll(getDataFromOutput(nerTaggedPassage, question.getAnswerTypes()));
+				
 				output.addAll(getDataFromOutput(posTaggedPassage, question.getAnswerTypes()));
+				
+				for(String answer : output) {
+					if(!question.getQuestion().toLowerCase().contains(answer.toLowerCase()) && !answers.contains(answer)) {
+						answers.add(answer);
+						question.addAnswer(answer);
+					}
+				}
+			}
+			
+			for(String passage : question.getRelevantPassages()) {
+				List<String> output = new ArrayList<String>(); 
+				if(answers.size() >= 10) break;
+				try{
+					output.addAll(Utility.getNounPhrases(passage, false));
+				} catch (Exception ex) {
+					System.out.println(ex.getMessage());
+				}
 				
 				for(String answer : output) {
 					if(!question.getQuestion().toLowerCase().contains(answer.toLowerCase()) && !answers.contains(answer)) {
