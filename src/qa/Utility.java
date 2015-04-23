@@ -3,15 +3,27 @@
  */
 package qa;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import edu.mit.jwi.Dictionary;
+import edu.mit.jwi.IDictionary;
+import edu.mit.jwi.item.IIndexWord;
+import edu.mit.jwi.item.ISynset;
+import edu.mit.jwi.item.ISynsetID;
+import edu.mit.jwi.item.IWord;
+import edu.mit.jwi.item.IWordID;
+import edu.mit.jwi.item.POS;
+import edu.mit.jwi.item.Pointer;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.NERClassifierCombiner;
@@ -84,6 +96,8 @@ public class Utility {
 	 * 
 	 */
 	private static String tokenizePattern = "[(){}\\[\\]]";
+	
+	private static  IDictionary dict;
 	
 	/**
 	 * 
@@ -281,13 +295,13 @@ public class Utility {
 	    }
 	   
 	    //finding head words
-    	String value = nounPhrase.get(0);
+    	/*String value = nounPhrase.get(0);
     	if(!value.isEmpty()) {
 		    System.out.println("head word = " + nounPhrase.get(0));
     	} else {
     		System.out.println("head word = " + nounPhrase.get(1));
     	}
-
+*/
     	return nounPhrase;
 	}
 
@@ -370,6 +384,64 @@ public class Utility {
 		
 	}
 	
+public static void findHypernyms(IWord word){
+		
+		System.out.println("entering hypernyms");
+		ISynset synset = word .getSynset () ;
+		
+		List <ISynsetID > hypernyms = synset.getRelatedSynsets(Pointer.HYPERNYM);
+
+        if( hypernyms.size() > 0)
+        {
+            // print out each hypernyms id and synonyms
+            List < IWord > words;
+            for( ISynsetID sid : hypernyms ) 
+            {
+                words = dict.getSynset( sid ).getWords ();
+                System.out.print( sid + " {");
+                for( Iterator <IWord> i = words.iterator(); i.hasNext(); ) 
+                {
+                    System.out.print( "hypernyms=\t"+i.next().getLemma() );
+                    if( i.hasNext() )
+                        System.out.print(", ");
+                }
+                System.out.println("}");
+            }
+        }	
+	}
+
+public static void findHyponym(IWord word){
+	System.out.println("entering hyponyms");
+	ISynset synset = word .getSynset () ;
+	
+	List <ISynsetID > hyponyms = synset.getRelatedSynsets(Pointer.HYPONYM);
+
+    if( hyponyms.size() > 0)
+    {
+        // print out each hyponyms id and synonyms
+        List < IWord > words;
+        for( ISynsetID sid : hyponyms ) 
+        {
+            words = dict.getSynset( sid ).getWords ();
+            System.out.print( sid + " {");
+            for( Iterator <IWord> i = words.iterator(); i.hasNext(); ) 
+            {
+                System.out.print( "hyponyms=\t"+i.next().getLemma() );
+                if( i.hasNext() )
+                    System.out.print(", ");
+            }
+            System.out.println("}");
+        }
+    }	
+}
+
+public static void findSynoynms(IWord word){
+	ISynset synset = word . getSynset ();
+
+	for( IWord w : synset . getWords ())
+	 System .out . println ("Syn=\t"+w. getLemma ());
+}
+	
 	/**
 	 * 
 	 * @param args
@@ -384,6 +456,38 @@ public class Utility {
 		String keywords = Utility.extractKeywords(question1);
 		String quesStru = Utility.getQuestionStructure(question1);
 		
+		String wordNetDirectory = "WordNet-3.0";
+		String path = wordNetDirectory + File.separator + "dict";
+        URL url=null;
+		try {
+			url = new URL("file", null, path);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		dict = new Dictionary(url);
+        try {
+			dict.open();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        List<String> keyword=new ArrayList<String> ();
+        keyword.add("apple");
+        keyword.add("rose");
+        keyword.add("flower");
+
+        for(String s: keyword){
+        	IIndexWord idxWord = dict.getIndexWord (s,   POS.NOUN);
+	        IWordID wordID = idxWord.getWordIDs().get(0) ;
+	        IWord word = dict.getWord (wordID);  
+	        System.out.println("Id = " + wordID);
+	        System.out.println(" Lemma = " + word.getLemma());
+	        System.out.println(" Gloss = " + word.getSynset().getGloss());  
+	        
+	        findSynoynms(word);
+	        findHypernyms(word);
+	        findHyponym(word);
 		
 		System.out.println("POS TAGS:   " + posTaggedQuestion);
 		System.out.println("NER TAGS:   " + nerTaggedQuestion);
@@ -391,8 +495,8 @@ public class Utility {
 		System.out.println("Keywords:   " + keywords);
 		System.out.println("Que Stru:   " + quesStru);
 		
-		for(String keyword : keywords.split(" ")) {
-			question1 = question1.replace(keyword, "");
+		for(String key : keywords.split(" ")) {
+			question1 = question1.replace(key, "");
 		}
 		
 		question1 = question1.replaceAll("the", "");
@@ -400,4 +504,5 @@ public class Utility {
 		question1 = question1.replace("of", "");
 		System.out.println(question1);
 	}	
+}
 }
