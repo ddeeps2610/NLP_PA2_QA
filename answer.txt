@@ -1,0 +1,880 @@
+qid 120
+1 Pa. 
+2 Washington 
+3 Kansas City 
+4 Mo. 
+5 Columbia 
+6 St. Louis 
+7 Cape Girardeau 
+8 Sedalia 
+9 Springfield 
+10 college , pa. , 187 
+qid 121
+1 Los Angeles 
+2 Florida 
+3 Mr. Conte 
+4 Cadillac 
+5 Farese 
+6 Thomas Farese 
+7 Olympic Film 
+8 police report 
+9 instance 
+10 driver 
+qid 122
+1 6:30 p.m. 
+2 next month 
+3 6:30 p.m. EDT 
+4 three hours later 
+5 an entertainment news show , `` show biz 
+6 an entertainment news show 
+7 show biz 
+8 the three networks 
+9 the `` feed '' of their newscasts 
+10 the `` feed '' 
+qid 123
+1 PM-Bastille 
+2 ,0425 
+3 ,0177 
+4 ,0604 
+5 ,0328 
+6 Thursday 
+7 Friday 
+8 bastille day ; 
+9 pm-bastille day ,0425 
+10 pm-bastille day 
+qid 124
+1 Scotland 
+2 aphotograph of tanks and troops assembled at the cattle market 
+3 aphotograph 
+4 tanks and troops assembled at the cattle market 
+5 tanks and troops 
+6 the cattle market 
+7 part of glasgow 's glasgow 
+8 part 
+9 glasgow 's glasgow 
+10 glasgow 's 
+qid 125
+1 Betamax 
+2 video 
+3 success 
+4 software 
+5 1980s 
+6 systems 
+7 be 
+8 Betacam 
+9 VCR 
+10 JVC 
+qid 126
+1 Meridian 
+2 Test 
+3 AZT 
+4 name azidothymidine 
+5 use 
+6 CFS 
+7 Depression 
+8 Burroughs Wellcome Co. 
+9 Retrovir 
+10 zidovudine 
+qid 127
+1 Chuck Yeager 
+2 David Dempsey 
+3 Electronic Arts 
+4 Air Force 
+5 the plane 
+6 the u.s. aircraft 
+7 several iraqi cities 
+8 blue , brown and green 
+9 blue 
+10 his shades 
+qid 128
+1 Petie 
+2 King World 
+3 Inc. 
+4 truth 
+5 matter 
+6 mutt 
+7 spokesman 
+8 syndicator 
+9 '20s 
+10 Richard W. Bann 
+qid 129
+1 range 
+2 billionth 
+3 nanometer-thin 
+4 one-billionth 
+5 resolution 
+6 line 
+7 technology research 
+8 apparatus 
+9 level 
+10 change 
+qid 130
+1 Mass. 
+2 Cambridge 
+3 Palo Alto 
+4 Calif. 
+5 Soviet Union 
+6 tufts university -lrb- mass. -rrb- , $ 18,282 
+7 -lrb- mass. -rrb- , $ 18,282 
+8 -lrb- mass. -rrb- 
+9 $ 18,282 
+10 course on managing hazardous wastes 
+qid 131
+1 Morrison 
+2 Sula 
+3 morrison 's `` song solomon '' 
+4 morrison 's 
+5 the national critics circle award for 1977 
+6 the national critics circle award 
+7 1977 
+8 the two other awards 
+9 ms. morrison 's `` song solomon '' 
+10 ms. morrison 's 
+qid 132
+1 Ian Fleming 
+2 Mel Brooks 
+3 Buck Henry 
+4 Associated Press 
+5 ,0831 
+6 Broccoli 
+7 the owner of the exclusive rights to novelist ian fleming 's james bond 
+8 the owner 
+9 the exclusive rights to novelist ian fleming 's james bond 
+10 the exclusive rights 
+qid 133
+1 the world in 
+2 the world 
+3 china 
+4 1.1 billion 
+5 growth 
+6 pressure the environment and resources 
+7 pressure 
+8 the environment and resources 
+9 the environment 
+10 resources 
+qid 134
+1 Bobby Castillo 
+2 Croy 
+3 Apache Indian 
+4 Jennifer 
+5 Beatrice 
+6 Royalty 
+7 Arizona 
+8 Mountain larkspur 
+9 Apache 
+10 Schoff 
+qid 135
+1 61 
+2 Friday 
+3 50 million 
+4 Thursday 
+5 today 
+6 1914-18 
+7 we 
+8 war and i 
+9 it 
+10 von sydow , 61 , 
+qid 136
+1 Boston 
+2 Ho Chi Minh City 
+3 Tay Ninh 
+4 west 
+5 budget 
+6 year 
+7 staff 
+8 patients 
+9 people 
+10 treat 
+qid 137
+1 : ey 
+2 ey 
+3 chevron 
+4 demand for fertilizers 
+5 demand 
+6 fertilizers 
+7 1987 
+8 the new process 
+9 an inexpensive , nontoxic 
+10 the 
+qid 138
+1 Normandy 
+2 D-Day 
+3 Monday 
+4 Battle 
+5 anniversary 
+6 museum 
+7 peace 
+8 Nations 
+9 mark 
+10 Editor 
+qid 139
+1 Mazda 
+2 Mollar 
+3 Lomita Rotary Club 
+4 Mr Yamanouchi 
+5 Tommy Robinson 
+6 Arkansas Democratic Party 
+7 Wankel 
+8 the saucer craft 
+9 the m400 
+10 eight gasoline built with technology acquired from a company that them in snowmobiles 
+qid 140
+1 England 
+2 Runnymede 
+3 King John 
+4 English 
+5 June 
+6 barons 
+7 grant 
+8 place 
+9 year 
+10 idea 
+qid 141
+1 George Choppelas 
+2 Charles Dickens 
+3 Court of Historical Review and Appeals 
+4 Jack Benny 
+5 Frank Winston 
+6 Alistair Sims 
+7 Manchester 
+8 the tongue-in-cheek ruling by municipal judge george choppelas 
+9 the tongue-in-cheek ruling 
+10 municipal judge george choppelas 
+qid 142
+1 AM-BRF 
+2 Colorado 
+3 Brewer 
+4 Make 
+5 history 
+6 book 
+7 children 
+8 reasons 
+9 ri AM-BRF 
+10 rf BC-Sake-Colorado 
+qid 143
+1 1839 
+2 1934 
+3 five 
+4 three 
+5 1911 
+6 900 million 
+7 the rockefeller family empire dates to john d. rockefeller , america 's first billionaire , who in 1839 in modest circumstances 
+8 the rockefeller family empire dates 
+9 john d. rockefeller , america 's first billionaire , who in 1839 in modest circumstances 
+10 america 's first billionaire 
+qid 144
+1 1956 
+2 1959 
+3 1931 
+4 1,000 
+5 29 
+6 94 
+7 1932 
+8 time 
+9 science 
+10 the situation imagined by aldous huxley in his `` brave new world 
+qid 145
+1 Indianapolis 
+2 London 
+3 Vienna 
+4 a departure from industry practice 
+5 a departure 
+6 industry practice 
+7 quality control 
+8 its indianapolis 
+9 it 
+10 individual facilities 
+qid 146
+1 United States 
+2 Indian peninsula 
+3 the most eloquent description of written in this century 
+4 the most eloquent description 
+5 written in this century 
+6 this century 
+7 the 600-word foreword that violinist yehudi menuhin for b.k.s. iyengar 's book light on 
+8 the 600-word foreword 
+9 that 
+10 violinist yehudi menuhin 
+qid 147
+1 Singer 
+2 Kasim Sulton 
+3 Miss 
+4 Blackhearts 
+5 Gena Rowlands 
+6 Michael J. Fox 
+7 Wolff 
+8 Playboy 
+9 Ajudge 
+10 Baez 
+qid 148
+1 Cadillac 
+2 LX 
+3 Pounds 
+4 New 
+5 Americans 
+6 Richard Donnelly 
+7 GM 
+8 ford 's goal 
+9 ford 's 
+10 the v-8 model average 23.5 per in city and driving 
+qid 149
+1 % 
+2 aerospace 
+3 products 
+4 concerns 
+5 aircraft industry 
+6 jet 
+7 body 
+8 engines 
+9 parts 
+10 RMI 
+qid 150
+1 Koplar 
+2 ' Channel 11 
+3 Ingersoll 
+4 Ingersoll Publications Co. 
+5 BC-St Sun 
+6 PM-St Sun ,0402 
+7 Post-Dispatch 
+8 Cox Sells Independent TV Station To Company 
+9 Southern Pacific Railroad 
+10 koplar 
+qid 151
+1 Tony the Tiger 
+2 Kellogg 
+3 Tony 
+4 Corn 
+5 U.S. 
+6 Toucan Sam 
+7 General Mills Inc. 
+8 Kellogg Co. 
+9 Corn 
+10 Riga 
+qid 152
+1 Debate 
+2 BASE 
+3 house 
+4 boardwalk 
+5 paint job 
+6 year 
+7 pilgrim couple 
+8 Bull 
+9 Declaration 
+10 Independence 
+qid 153
+1 Aiwa 
+2 computer 
+3 Core 
+4 equipment manufacturer basis 
+5 data cartridges 
+6 HP 
+7 Convex 
+8 agreement 
+9 sale 
+10 others products 
+qid 154
+1 Omnibus 
+2 Disney 
+3 Cinderella 
+4 BBC1 
+5 ACalifornia 
+6 Hotel 
+7 Casino 
+8 estate marketing company 
+9 buyer 
+10 months 
+qid 155
+1 Spain 
+2 the basque , stems from the proximity of the basque 
+3 the basque , 
+4 the proximity of the basque 
+5 the proximity 
+6 the basque 
+7 who 
+8 accused of isolating basque '' 
+9 accused 
+10 isolating basque 
+qid 156
+1 25 
+2 50 
+3 92073 
+4 92173 
+5 92143 
+6 97 
+7 95 
+8 a 
+9 post office 
+10 a bit 
+qid 157
+1 each May 
+2 May 9-11 
+3 9-11 
+4 May 8-18 
+5 8-18 
+6 16-18 
+7 1878 
+8 April 12-28 
+9 12-28 
+10 April 12-21 
+qid 158
+1 1981 
+2 Wednesday 
+3 one 
+4 Thursday 
+5 1987 
+6 Sunday 
+7 Monday 
+8 1982 
+9 30 
+10 lady diana spencer 
+qid 159
+1 Holy Roman Empire 
+2 Edilberto 
+3 Knox 
+4 Chris 
+5 Gallegos 
+6 Schinkel 
+7 Jeffery 
+8 Lozano 
+9 Gilroy 
+10 Verdusco 
+qid 160
+1 
+2 end 
+3 Nicaragua 
+4 Honduras 
+5 Carper 
+6 Commission 
+7 U.S.-Latin American 
+8 trip 
+9 Central America 
+10 Staggers 
+qid 161
+1 Philadelphia-New Jersey 
+2 Lawrenceville 
+3 Princeton 
+4 LOS ANGELES 
+5 Crenshaw Blvd. 
+6 Torrance 
+7 1140 W. Mission Road 
+8 San Marcos 
+9 17th Street 
+10 Bristol 
+qid 162
+1 Dawson Hughes 
+2 Rashmi Sinha 
+3 Ann Arbor 
+4 women who lost their periods 
+5 women 
+6 who 
+7 their periods 
+8 as of the sex hormone estrogen , which leads to loss 
+9 as 
+10 the sex hormone estrogen , which leads to loss 
+qid 163
+1 International 
+2 Las Vegas 
+3 Las Vegas 
+4 U.S. 
+5 Vermont Public Service Board 
+6 Vermont 
+7 New England Telephone Co. 
+8 Nynex 
+9 Vermont Public Service 
+10 San Francisco International 
+qid 164
+1 Connecticut 
+2 U.S. 
+3 New York 
+4 Ford Motor Co. 
+5 New York State 
+6 PM-Scotus-Lemon Law 
+7 California 
+8 Song-Beverly Warranty Act 
+9 New Motor Vehicle Board 
+10 Mahoney 
+qid 165
+1 Lotteries 
+2 New York 
+3 Oregon 
+4 South Dakota 
+5 Jim Davey 
+6 Lotto America 
+7 as 23 
+8 video games 
+9 small 
+10 there 
+qid 166
+1 Pennsylvania 
+2 Menlo Park 
+3 N.J. 
+4 West Orange 
+5 Huntington Beach 
+6 former professor pleads guilty 
+7 stealing documents from edison museum 
+8 stealing documents 
+9 seventy-six pages of handwritten notes by thomas edison 
+10 seventy-six pages 
+qid 167
+1 Hanoi 
+2 Vietnam 
+3 Vietnam Memorial 
+4 Grenada 
+5 Panama 
+6 the other 
+7 aspokesman for the american military delegation in hanoi 
+8 aspokesman 
+9 the american military delegation in hanoi 
+10 the american military delegation 
+qid 168
+1 Black 
+2 Killin 
+3 Time 
+4 Milli Vanilli 
+5 New Kids 
+6 Block 
+7 Hangin 
+8 Janet Jackson 
+9 Rhythm Nation 
+10 Control 
+qid 169
+1 presence 
+2 cattle 
+3 seem 
+4 Mr. Goosebuster 
+5 computer company 
+6 struggle 
+7 plant 
+8 co-workers 
+9 grounds 
+10 rid 
+qid 170
+1 Central 
+2 Haines City 
+3 Winter Haven 
+4 Atotal 
+5 Boardwalk 
+6 Baseball 
+7 Cypress Gardens 
+8 layoff 
+9 company 
+10 workers 
+qid 171
+1 Alabama 
+2 Arkansas 
+3 Auburn 
+4 Louisiana State 
+5 State 
+6 alabama , arkansas , auburn , louisiana , mississippi and mississippi 
+7 alabama , arkansas , auburn , louisiana 
+8 mississippi 
+9 the other 
+10 streak in big way , 42-7 
+qid 172
+1 1840 
+2 last year 
+3 the chapel 
+4 the site of the of queen victoria and prince albert in 1840 
+5 the site of the of queen victoria 
+6 the site 
+7 the of queen victoria 
+8 the 
+9 queen victoria 
+10 prince albert in 1840 
+qid 173
+1 Harrison 
+2 Mr. Harrison 
+3 Lord 
+4 Mr. Lord 
+5 Cuomo 
+6 Quayle 
+7 Danny 
+8 Mario 
+9 Sunday 
+10 ABC-TV 
+qid 174
+1 Petie 
+2 King World Productions Inc. 
+3 King World 
+4 Inc. 
+5 Productions 
+6 George McFarland 
+7 Spanky 
+8 Kelly 
+9 Elizabeth Twiddy Kelly 
+10 Day Care Center 
+qid 175
+1 Illinois 
+2 New Jersey 
+3 New York 
+4 Washington 
+5 Rhode Island 
+6 Maine 
+7 the 10 
+8 pennsylvania and illinois 
+9 taxes , and both of those at flat 
+10 taxes 
+qid 176
+1 arrival 
+2 news conference 
+3 comment 
+4 byline 
+5 graf 
+6 coach 
+7 version 
+8 Eds 
+9 grafs 
+10 officials 
+qid 177
+1 Mel Brooks 
+2 Peter Boyle 
+3 Madeline 
+4 Marty Feldman 
+5 Cloris Leachman 
+6 spoof 
+7 horror 
+8 films 
+9 Photo 
+10 Donen 
+qid 178
+1 State Street 
+2 Chicago 
+3 U.S. 
+4 Alaska 
+5 Arizona 
+6 California 
+7 Colorado 
+8 Georgia 
+9 Illinois 
+10 Kentucky 
+qid 179
+1 Round Tower 
+2 Buckingham Palace 
+3 London 
+4 pm-windsor castle ,0353 
+5 pm-windsor castle 
+6 ,0353 
+7 tower of windsor castle damaged 
+8 tower 
+9 windsor castle damaged 
+10 shifting foundations 
+qid 180
+1 France 
+2 South Africa 
+3 Johannesburg 
+4 the university of the witwatersand , where webster taught anthropology , 
+5 the university 
+6 the witwatersand 
+7 anthropology 
+8 an additional $ 4,000 reward 
+9 webster , 44 , 
+10 44 
+qid 181
+1 Chicago 
+2 Legendary Station 
+3 ABC 
+4 Marconi Radio 
+5 WLS-AM 
+6 news commentator 
+7 personality 
+8 year award 
+9 Awards 
+10 K-LITE 
+qid 182
+1 Airport 
+2 Boston 
+3 Piper Cheyenne 
+4 Cape Cod 
+5 Chatham 
+6 Rhode Island 
+7 New York 
+8 logan international airport , 12,754 
+9 logan international airport 
+10 12,754 
+qid 183
+1 Heck 
+2 Johnny 
+3 scarecrow 
+4 gingham dress 
+5 pumpkin vine 
+6 branches 
+7 protect 
+8 DRAWING 
+9 Margot Tomes 
+10 Alice Schertle 
+qid 184
+1 Catholic University of 
+2 Sanchez de Lozada 
+3 Frei 
+4 Ilo 
+5 Juan Carlos Wasmosy 
+6 Gonzalo Sanchez de Lozada 
+7 Carlos Saul Menem 
+8 Gonzalo Sanchez de Losada 
+9 mercosur 's acceptance of bolivia as guest observer 
+10 mercosur 's acceptance 
+qid 185
+1 Boston 
+2 Baltimore 
+3 Richmond 
+4 Va. 
+5 United States 
+6 Niles 
+7 Ohio 
+8 boston 
+9 1809 
+10 baltimore 
+qid 186
+1 Miami 
+2 COLORADO 
+3 Nebraska 
+4 drawing ; -lrb- orange bowl -rrb- 
+5 drawing 
+6 -lrb- orange bowl -rrb- 
+7 irish loss 
+8 jan. 14 , 1968 at orange bowl , miami 
+9 jan. 14 , 1968 
+10 orange bowl , miami 
+qid 187
+1 schedule 
+2 series 
+3 season 
+4 Adventures 
+5 Ghostbusters 
+6 Sept. 
+7 Pup 
+8 Scooby Doo 
+9 New 
+10 Slimer 
+qid 188
+1 inside 
+2 outside 
+3 souvenir 
+4 countdown 
+5 roof 
+6 flight control center 
+7 quarter-mile 
+8 contract 
+9 test-firing 
+10 examination 
+qid 189
+1 reims , france -lrb- ap -rrb- 
+2 reims , france 
+3 ap 
+4 addition to money spent at the 
+5 addition 
+6 money spent at the 
+7 money 
+8 the 
+9 hotels and restaurants 
+10 some of the dollars 
+qid 190
+1 Crescent 
+2 equivalent 
+3 Persian Gulf 
+4 Republic News Agency 
+5 suspension 
+6 repatriation 
+7 war 
+8 prisoners 
+9 League 
+10 International 
+qid 191
+1 hit 
+2 show 
+3 way 
+4 Addiction 
+5 fan 
+6 kind 
+7 music 
+8 PR 
+9 platform 
+10 film 
+qid 192
+1 purchase 
+2 supercomputer 
+3 part 
+4 bicycle team 
+5 midst 
+6 trek 
+7 conflux 
+8 drive 
+9 gem 
+10 cigarette 
+qid 193
+1 Brigitte Muir 
+2 Antartica 
+3 assault 
+4 warm 
+5 North America 
+6 Mount McKinley 
+7 people 
+8 years 
+9 Hillary 
+10 Everest 
+qid 194
+1 Petie 
+2 George McFarland 
+3 Spanky 
+4 Spanky McFarland 
+5 Kelly 
+6 Day Care Center 
+7 Day Care Center 
+8 Edenton 
+9 Raleigh 
+10 Times 
+qid 195
+1 Bob Mohr 
+2 Garvey 
+3 discussion 
+4 name 
+5 school 
+6 school district superintendent 
+7 press 
+8 guideline 
+9 programs 
+10 Procter 
+qid 196
+1 stage 
+2 piano 
+3 singing 
+4 dancers 
+5 songs 
+6 have 
+7 May 
+8 Wadsworth 
+9 Live 
+10 Lincoln Center 
+qid 197
+1 BUFFALO CHICKEN 
+2 layer 
+3 crowd 
+4 Add 
+5 ANIMAL CONTROL 
+6 YELLOWSTONE NATIONAL PARK 
+7 CATTLE 
+8 WILDLIFE MANAGEMENT 
+9 DISEASES 
+10 hunting 
+qid 198
+1 story 
+2 relationship 
+3 boy 
+4 art historian 
+5 page 
+6 book 
+7 drawing 
+8 satyr 
+9 study 
+10 relief sculpture 
+qid 199
+1 Kevlar 
+2 Stainmaster 
+3 Nomex 
+4 success 
+5 carpet 
+6 Profits 
+7 products 
+8 fibers 
+9 U.S. 
+10 Du Pont Co. 
