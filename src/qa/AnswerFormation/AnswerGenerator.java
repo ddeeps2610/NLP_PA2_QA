@@ -38,7 +38,7 @@ public class AnswerGenerator implements IAnswerGenerator {
 			HashSet<String> answers = new HashSet<String>();
 			for(String passage : question.getRelevantPassages()) {
 				List<String> output = new ArrayList<String>(); 
-				if(answers.size() >= 10) break;
+				String passageWithoutKeywords = null;
 				String nerTaggedPassage = Utility.getNERTagging(passage);
 				String posTaggedPassage = Utility.getPOSTagging(passage);
 				output.addAll(getDataFromOutput(nerTaggedPassage, question.getAnswerTypes()));
@@ -48,13 +48,15 @@ public class AnswerGenerator implements IAnswerGenerator {
 				for(String answer : output) {
 					if(!question.getQuestion().toLowerCase().contains(answer.toLowerCase()) && !answers.contains(answer)) {
 						answers.add(answer);
-						question.addAnswer(answer);
+						passageWithoutKeywords = Utility.removeKeywords(answer, question.getKeywords());
+						question.addAnswer(passageWithoutKeywords);
 					}
 				}
 			}
 			
 			for(String passage : question.getRelevantPassages()) {
 				List<String> output = new ArrayList<String>(); 
+				String passageWithoutKeywords = null;
 				if(answers.size() >= 10) break;
 				try{
 					output.addAll(Utility.getNounPhrases(passage, false));
@@ -65,7 +67,8 @@ public class AnswerGenerator implements IAnswerGenerator {
 				for(String answer : output) {
 					if(!question.getQuestion().toLowerCase().contains(answer.toLowerCase()) && !answers.contains(answer)) {
 						answers.add(answer);
-						question.addAnswer(answer);
+						passageWithoutKeywords = Utility.removeKeywords(answer, question.getKeywords());
+						question.addAnswer(passageWithoutKeywords);
 					}
 				}
 			}

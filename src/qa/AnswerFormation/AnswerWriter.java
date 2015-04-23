@@ -40,6 +40,7 @@ public class AnswerWriter {
 					int answerCounter = 1;
 					for(String answer : question.getAnswers()) {
 						writer.write(answerCounter++ + " " + answer + "\n");
+						if(answerCounter > 10) break;
 					}
 				}
 			} catch (UnsupportedEncodingException ex) {

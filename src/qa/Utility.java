@@ -156,7 +156,7 @@ public class Utility {
 		}
 	
 		if(startIndex != -1) {
-			keywordsString += question.substring(startIndex, lastIndex + 1);
+			keywordsString += question.substring(startIndex, lastIndex + 1) + " ";
 		}
 		
 		return keywordsString;
@@ -341,6 +341,27 @@ public class Utility {
 		return questionStructs.toString().trim();
 	}
 
+	/**
+	 * 
+	 * @param sentence
+	 * @param keywords
+	 * @return
+	 */
+	public static String removeKeywords(String sentence, String keywords) {
+		StringBuilder retVal = new StringBuilder();	
+		String[] sentenceArray = sentence.split(" ");
+		
+		for(String string : sentenceArray) {
+			if(string != null && !string.equals("")){
+				if(keywords.contains(string + " ")) {
+					continue;
+				}
+				retVal.append(string + " ");
+			}
+		}
+		
+		return retVal.toString();
+	}
 	
 	/**
 	 * 
